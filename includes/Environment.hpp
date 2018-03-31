@@ -6,10 +6,10 @@
 
 class Environment
 {
-public:
-	Environment(void);															//canonical
-	Environment(Environment const &src);						//canonical
-	~Environment(void);															//canonical
+  public:
+	Environment(void);								//canonical
+	Environment(Environment const &src);			//canonical
+	~Environment(void);								//canonical
 	Environment &operator=(Environment const &rhs); //canonical
 	unsigned int getW(void) const;
 	unsigned int getH(void) const;
@@ -18,12 +18,13 @@ public:
 	void print(WINDOW *local_win, int x, int y) const;
 	void printAll(void) const;
 
-protected:
-private:
+  protected:
+  private:
 	unsigned int _w;
 	unsigned int _h;
 	bool _active;
 	PlayerShip _player;
+	WINDOW *win;
 };
 
 #endif

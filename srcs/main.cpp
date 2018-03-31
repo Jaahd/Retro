@@ -8,8 +8,8 @@
 
 int main(void)
 {
-    PlayerShip toto("toto");
-    Missile &pouet = toto.launchMissile();
+    //PlayerShip toto("toto");
+    //Missile &pouet = toto.launchMissile();
     Environment env;
 
     env.handleKey(0);
