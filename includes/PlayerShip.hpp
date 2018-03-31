@@ -20,6 +20,7 @@ public:
   bool moveLeft();
   bool moveRight(int width);
   Missile &launchMissile();
+  void print(int toDisplay, int elapsed_time) const;
   // void display(Environement const &env);
 
   PlayerShip &operator=(PlayerShip const &rhs);
@@ -42,7 +43,7 @@ public:
   void setAtk(int Atk);
   int getSpeed(void) const;
   void setSpeed(int lvl);
-  void print(void) const;
+
 
 private:
   std::string _name;

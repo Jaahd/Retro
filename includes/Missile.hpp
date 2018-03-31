@@ -1,6 +1,8 @@
 #ifndef MISSILE_HPP
 #define MISSILE_HPP
 
+#include "Display.hpp"
+
 class Missile
 {
   public:
@@ -11,6 +13,7 @@ class Missile
 
     bool check_target(); // TODO
     void move();
+    void print(int toDisplay, int elapsed_time) const;
 
     Missile &operator=(Missile const &rhs);
 
@@ -31,6 +34,7 @@ class Missile
     int _width;
     int _speed;
     int _damages;
+    Display _display;
 };
 
 #endif //MISSILE_HPP

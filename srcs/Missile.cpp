@@ -24,6 +24,14 @@ Missile::~Missile()
     std::cout << "missile destroyed" << std::endl;
 }
 
+void    Missile::print(int toDisplay, int elapsed_time) const
+{
+    (void)elapsed_time;
+    this->_display.print(_x, _y, COLOR_WHITE, toDisplay);
+    return;
+}
+
+
 bool Missile::check_target()
 {
     std::cout << "missile hit target" << std::endl;

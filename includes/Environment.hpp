@@ -18,16 +18,16 @@ class Environment
 	unsigned int getH(void) const;
 	bool isActive(void) const;
 	void handleKey(int key);
-	void print(int x, int y) const;
+	void print(int x, int y, int toDisplay) const;
 	void checkCollisions();
-	void printAll(void) const;
+	void printAll(int elapsed_time) const;
 
   private:
 	unsigned int _w;
 	unsigned int _h;
 	bool _active;
 	PlayerShip _player;
-	EnemyPack _enemies;
+    MissilePack _missiles;
 	Display _display;
 };
 

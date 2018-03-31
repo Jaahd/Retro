@@ -10,7 +10,8 @@ OPATH =		$(ROOT)/objs
 CPATH =		$(ROOT)/srcs
 HPATH =		$(ROOT)/includes
 
-CFLAGS = -Wall -Wextra -std=c++98 -I $(HPATH) -lncurses
+CFLAGS = -Wall -Wextra -std=c++98 -I $(HPATH)
+LFLAGS = -lncurses
 
 
 SRC = main.cpp \
@@ -32,7 +33,7 @@ all: $(OPATH) $(NAME)
 $(NAME): $(OFILES)
 	@echo "Creating OBJ files"
 	@echo "Building $@"
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) $(LFLAGS) -o $@ $^
 	@echo "\033[36mAll is done!\033[0m"
 
 $(OPATH)/%.o: $(CPATH)/%.cpp

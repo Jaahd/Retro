@@ -23,9 +23,10 @@ PlayerShip::~PlayerShip()
     std::cout << "player ship destroyed" << std::endl;
 }
 
-void    PlayerShip::print(void) const
+void    PlayerShip::print(int toDisplay, int elapsed_time) const
 {
-    _display.print(_x, _y, COLOR_WHITE);
+    (void)elapsed_time;
+    _display.print(_x, _y, COLOR_WHITE, toDisplay);
     return;
 }
 
@@ -45,7 +46,7 @@ void PlayerShip::event(int key, int width)
     }
     case ' ':
     {
-        _missiles.push(&(this->launchMissile()));
+        this->_missiles.push(&(this->launchMissile()));
         break;
     }
     default:
@@ -73,6 +74,7 @@ bool PlayerShip::moveRight(int width)
 
 Missile &PlayerShip::launchMissile()
 {
+    std::cout << "launch_missile" << std::endl;
     Missile *msl = new Missile(this->_atk);
     return *msl;
 }
