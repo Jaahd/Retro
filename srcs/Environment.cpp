@@ -67,6 +67,14 @@ void Environment::print(WINDOW *local_win, int x, int y) const
 	return;
 }
 
+void Environment::checkCollisions(EnemyPack &enemies, MissilePack &missiles, PlayerShip &player);
+{
+    for (int i = 0; i < enemies.getCount(); i++)
+    {
+        enemies.getOne().checkHit(missiles, player);
+    }
+}
+
 Environment &Environment::operator=(Environment const &rhs)
 {
 	//add equality

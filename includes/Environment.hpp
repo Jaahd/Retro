@@ -16,13 +16,16 @@ public:
 	bool isActive(void) const;
 	void handleKey(int key);
 	void print(WINDOW *local_win, int x, int y) const;
+    void checkCollisions();
 
 protected:
 private:
 	unsigned int _w;
 	unsigned int _h;
 	bool _active;
-	PlayerShip player;
+	PlayerShip _player;
+    MissilePack **_missiles;
+    EnemyPack **_enemies;
 };
 
 #endif

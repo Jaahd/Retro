@@ -1,12 +1,12 @@
 #include <ncurses.h>
 #include "PlayerShip.hpp"
 
-PlayerShip::PlayerShip(void) : _name("ship"), _abs(0), _pv(20), _lvl(1), _armor(0), _atk(1), _speed(1)
+PlayerShip::PlayerShip(void) : _name("ship"), _x(0), _pv(20), _lvl(1), _armor(0), _atk(1), _speed(1)
 {
     std::cout << "player ship created" << std::endl;
 }
 
-PlayerShip::PlayerShip(std::string const & name) : _name(name), _abs(0), _pv(20), _lvl(1), _armor(0), _atk(1), _speed(1)
+PlayerShip::PlayerShip(std::string const & name) : _name(name), _x(0), _pv(20), _lvl(1), _armor(0), _atk(1), _speed(1)
 {
     std::cout << "player ship created" << std::endl;
 }
@@ -51,14 +51,14 @@ int PlayerShip::event(int key, int width)
 // }
 bool PlayerShip::moveLeft()
 {
-    if (this->_abs > 0)
-        this->_abs--;
+    if (this->_x > 0)
+        this->_x--;
     return true;
 }
 bool PlayerShip::moveRight(int width)
 {
-    if (this->_abs < width)
-        this->_abs++;
+    if (this->_x < width)
+        this->_x++;
     return true;
 }
 
@@ -76,13 +76,22 @@ void PlayerShip::setName(std::string name)
 {
     this->_name = name;
 }
-int PlayerShip::getAbs(void) const
+
+int PlayerShip::getX(void) const
 {
-    return this->_abs;
+    return this->_x;
 }
-void PlayerShip::setAbs(int abs)
+void PlayerShip::setX(int x)
 {
-    this->_abs = abs;
+    this->_x = abs;
+}
+int PlayerShip::getY(void) const
+{
+    return this->_y;
+}
+void PlayerShip::setY(int y)
+{
+    this->_y = y;
 }
 int PlayerShip::getPv(void) const
 {
@@ -128,7 +137,8 @@ void PlayerShip::setSpeed(int speed)
 PlayerShip &PlayerShip::operator=(PlayerShip const &rhs)
 {
     this->_name = rhs.getName();
-    this->_abs = rhs.getAbs();
+    this->_x = rhs.getAbs();
+    this->_y = rhs.getAbs();
     this->_pv = rhs.getPv();
     this->_lvl = rhs.getLvl();
     this->_armor = rhs.getArmor();
