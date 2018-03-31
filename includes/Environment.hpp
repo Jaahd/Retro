@@ -22,7 +22,7 @@ private:
 	unsigned int _w;
 	unsigned int _h;
 	bool _active;
-	PlayerShip player;
+	PlayerShip _player;
 };
 
 #endif
