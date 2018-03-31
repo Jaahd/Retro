@@ -46,28 +46,30 @@ bool Environment::isActive(void) const
 
 void Environment::handleKey(int key)
 {
-	WINDOW *point = NULL;
-	clear();
 	if (key == 27)
 		_active = false;
 	else if (key == 410)
 		getmaxyx(stdscr, _h, _w);
-	else if (key == KEY_BACKSPACE)
-		std::cout << "la";
-	_player.move(key, _w);
-	//_player.event(key, _w);
-	this->print(point, _player.getAbs(), _h - 6);
-	delch();
+	_player.event(key, _w);
+}
+void Environment::printAll(void) const
+{
+	WINDOW *point = NULL;
+
+	clear();
+	this->print(point, _player.getAbs(), _h - 2);
+	return;
 }
 void Environment::print(WINDOW *local_win, int x, int y) const
 {
-	// if (local_win)
-	// {
-	// 	wborder(local_win, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
-	// 	wrefresh(local_win);
-	// 	delwin(local_win);
-	// 	// delete local_win;
-	// }
+	if (local_win)
+	{
+		wborder(local_win, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
+		wrefresh(local_win);
+		delwin(local_win);
+	}
+	char cBlock = (char)0x2588;
+	addch(cBlock);
 	local_win = subwin(stdscr, 2, 4, y, x);
 	init_pair(2, COLOR_WHITE, COLOR_WHITE);
 	wbkgd(local_win, COLOR_PAIR(2));

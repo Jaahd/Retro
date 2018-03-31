@@ -13,8 +13,9 @@ class PlayerShip : public IGameEntity
     PlayerShip(PlayerShip const &src);
     ~PlayerShip(void);
 
-    void move(int key, int width);
+
     // bool moveForward();
+    int event(int key, int width);
     bool moveLeft();
     bool moveRight(int width);
     Missile &launchMissile();

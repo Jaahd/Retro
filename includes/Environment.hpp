@@ -16,6 +16,7 @@ public:
 	bool isActive(void) const;
 	void handleKey(int key);
 	void print(WINDOW *local_win, int x, int y) const;
+	void printAll(void) const;
 
 protected:
 private:
