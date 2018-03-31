@@ -8,6 +8,7 @@
 int main(void)
 {
     PlayerShip toto("toto");
+    Missile &pouet = toto.launchMissile();
     Environment env;
     WINDOW *point = NULL;
     env.print(point, 5, 5);
@@ -16,6 +17,7 @@ int main(void)
         env.handleKey(getch());
         env.print(point, 5, 5);
     }
-    // std::cout << env.getH() << "height and" << env.getW() << "width\n";
+    std::cout << env.getH() << "height and" << env.getW() << "width\n";
+
     return 0;
 }

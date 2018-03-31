@@ -21,12 +21,28 @@ PlayerShip::~PlayerShip()
 {
     std::cout << "player ship destroyed" << std::endl;
 }
-void PlayerShip::move(int key, int width)
+int PlayerShip::event(int key, int width)
 {
-    if (key == KEY_LEFT)
-        this->moveLeft();
-    if (key == KEY_RIGHT)
-        this->moveRight(width);
+    switch (key)
+    {
+        case KEY_LEFT:
+        {
+            this->moveLeft();
+            break;
+        }
+        case KEY_RIGHT:
+        {
+            this->moveRight(width);
+            break;
+        }
+        case ' ':
+        {
+            this->launchMissile();
+            break;
+        }
+        default:
+        break;
+    }
 }
 
 // bool PlayerShip::moveForward()
