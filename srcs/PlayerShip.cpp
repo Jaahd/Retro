@@ -37,7 +37,7 @@ int PlayerShip::event(int key, int width)
     }
     case ' ':
     {
-        this->launchMissile();
+        _missiles.push(&(this->launchMissile()));
         break;
     }
     default:

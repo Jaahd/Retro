@@ -30,6 +30,14 @@ MissilePack &MissilePack::operator=(MissilePack const &rhs)
 	return *this;
 }
 
+void MissilePack::moveAll(void) const
+{
+	for (int i = 0; i < _count; i++)
+	{
+		_current[i]->move();
+	}
+}
+
 int MissilePack::getCount(void)
 {
 	return _count;

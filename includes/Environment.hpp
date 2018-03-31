@@ -16,7 +16,7 @@ class Environment
 	unsigned int getH(void) const;
 	bool isActive(void) const;
 	void handleKey(int key);
-	void print(WINDOW *local_win, int x, int y) const;
+	void print(int x, int y) const;
 	void checkCollisions();
 	void printAll(void) const;
 
@@ -25,8 +25,7 @@ class Environment
 	unsigned int _h;
 	bool _active;
 	PlayerShip _player;
-	WINDOW *win;
-	MissilePack _missiles;
+	// MissilePack _missiles;
 	//EnemyPack _enemies;
 };
 
