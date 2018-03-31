@@ -26,7 +26,7 @@ void PlayerShip::move(int key, int width)
     if (key == KEY_LEFT)
         this->moveLeft();
     if (key == KEY_RIGHT)
-        this->moveRight();
+        this->moveRight(width);
 }
 
 // bool PlayerShip::moveForward()
@@ -39,7 +39,7 @@ bool PlayerShip::moveLeft()
         this->_abs--;
     return true;
 }
-bool PlayerShip::moveRight()
+bool PlayerShip::moveRight(int width)
 {
     if (this->_abs < width)
         this->_abs++;
@@ -49,7 +49,7 @@ bool PlayerShip::moveRight()
 Missile &PlayerShip::launchMissile()
 {
     Missile *msl = new Missile(this->_atk);
-    return git msl;
+    return *msl;
 }
 
 std::string PlayerShip::getName(void) const

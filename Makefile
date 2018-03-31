@@ -10,7 +10,7 @@ OPATH =		$(ROOT)/objs
 CPATH =		$(ROOT)/srcs
 HPATH =		$(ROOT)/includes
 
-CFLAGS = -Wall -Werror -Wextra -std=c++98 -I $(HPATH) #-lncurses
+CFLAGS = -Wall -Wextra -std=c++98 -I $(HPATH) -lncurses
 
 
 SRC = main.cpp \

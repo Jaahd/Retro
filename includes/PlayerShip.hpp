@@ -16,7 +16,7 @@ class PlayerShip : public IGameEntity
     void move(int key, int width);
     // bool moveForward();
     bool moveLeft();
-    bool moveRight();
+    bool moveRight(int width);
     Missile &launchMissile();
     // void display(Environement const &env);
 

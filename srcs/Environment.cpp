@@ -55,7 +55,7 @@ void Environment::print(WINDOW *local_win, int x, int y) const
 		wborder(local_win, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
 		wrefresh(local_win);
 		delwin(local_win);
-		delete local_win;
+		// delete local_win;
 	}
 	local_win = subwin(stdscr, 1, 1, y, x);
 	init_pair(2, COLOR_WHITE, COLOR_WHITE);
