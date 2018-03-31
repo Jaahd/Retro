@@ -17,8 +17,8 @@ public:
 	void handleKey(int key);
 	void print(WINDOW *local_win, int x, int y) const;
     void checkCollisions();
+	void printAll(void) const;
 
-protected:
 private:
 	unsigned int _w;
 	unsigned int _h;

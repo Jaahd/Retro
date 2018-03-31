@@ -17,6 +17,7 @@ SRC = main.cpp \
 	  Environment.cpp \
 	  PlayerShip.cpp \
 	  Missile.cpp \
+	  MissilePack.cpp \
 	#  Enemy.cpp
 
 

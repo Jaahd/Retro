@@ -4,56 +4,62 @@ WINDOW *create_newwin(int height, int width, int starty, int startx);
 void destroy_win(WINDOW *local_win);
 
 int main(int argc, char *argv[])
-{	WINDOW *my_win;
+{
+	WINDOW *my_win;
 	int startx, starty, width, height;
 	int ch;
 
-	initscr();			/* Start curses mode 		*/
-	cbreak();			/* Line buffering disabled, Pass on everty thing to me 		*/
-	keypad(stdscr, TRUE);		/* I need that nifty F1 	*/
-    curs_set(0);
+	initscr();			  /* Start curses mode 		*/
+	cbreak();			  /* Line buffering disabled, Pass on everty thing to me 		*/
+	keypad(stdscr, TRUE); /* I need that nifty F1 	*/
+	curs_set(0);
 	height = 3;
 	width = 10;
-	starty = (LINES - height) / 2;	/* Calculating for a center placement */
-	startx = 0;	/* of the window		*/
-   // border(my_win);
+	starty = (LINES - height) / 2; /* Calculating for a center placement */
+	startx = 0;					   /* of the window		*/
+								   // border(my_win);
 	printw("Press Esc twice to exit");
 	refresh();
 	my_win = create_newwin(height, width, starty, startx);
 
-	while((ch = getch()) != 27)
-	{	switch(ch)
-		{	case KEY_LEFT:
-				destroy_win(my_win);
-				my_win = create_newwin(height, width, starty,--startx);
-				break;
-			case KEY_RIGHT:
-				destroy_win(my_win);
-				my_win = create_newwin(height, width, starty,++startx);
-				break;
-			case KEY_UP:
-				destroy_win(my_win);
-				my_win = create_newwin(height, width, --starty,startx);
-				break;
-			case KEY_DOWN:
-				destroy_win(my_win);
-				my_win = create_newwin(height, width, ++starty,startx);
-				break;
+	while ((ch = getch()) != 27)
+	{
+		switch (ch)
+		{
+		case KEY_LEFT:
+			destroy_win(my_win);
+			my_win = create_newwin(height, width, starty, --startx);
+			break;
+		case KEY_RIGHT:
+			destroy_win(my_win);
+			my_win = create_newwin(height, width, starty, ++startx);
+			break;
+		case KEY_UP:
+			destroy_win(my_win);
+			my_win = create_newwin(height, width, --starty, startx);
+			break;
+		case KEY_DOWN:
+			destroy_win(my_win);
+			my_win = create_newwin(height, width, ++starty, startx);
+			break;
 		}
+		//printw("Press Esc twice to exit");
+		refresh();
 	}
 
-	endwin();			/* End curses mode		  */
+	endwin(); /* End curses mode		  */
 	return 0;
 }
 
 WINDOW *create_newwin(int height, int width, int starty, int startx)
-{	WINDOW *local_win;
+{
+	WINDOW *local_win;
 
 	local_win = newwin(height, width, starty, startx);
-	box(local_win, 0 , 0);		/* 0, 0 gives default characters
+	box(local_win, 0, 0); /* 0, 0 gives default characters
 					 * for the vertical and horizontal
 					 * lines			*/
-	wrefresh(local_win);		/* Show that box 		*/
+	wrefresh(local_win);  /* Show that box 		*/
 
 	return local_win;
 }
@@ -64,7 +70,7 @@ void destroy_win(WINDOW *local_win)
 	 * result of erasing the window. It will leave it's four corners
 	 * and so an ugly remnant of window.
 	 */
-	wborder(local_win, ' ', ' ', ' ',' ',' ',' ',' ',' ');
+	wborder(local_win, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
 	/* The parameters taken are
 	 * 1. win: the window on which to operate
 	 * 2. ls: character to be used for the left side of the window

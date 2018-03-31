@@ -5,11 +5,13 @@ Environment::Environment(void)
 	initscr();
 	cbreak();
 	keypad(stdscr, TRUE);
+	timeout(1);
+	noecho();
 	curs_set(0);
 	getmaxyx(stdscr, _h, _w);
-	start_color();
-	init_pair(1, COLOR_WHITE, COLOR_BLACK);
-	wbkgd(stdscr, COLOR_PAIR(1));
+	//start_color();
+	// init_pair(1, COLOR_WHITE, COLOR_BLACK);
+	// wbkgd(stdscr, COLOR_PAIR(1));
 	_active = true;
 	return;
 }
@@ -31,6 +33,7 @@ unsigned int Environment::getW(void) const
 {
 	return _w;
 }
+
 unsigned int Environment::getH(void) const
 {
 	return _h;
@@ -47,6 +50,15 @@ void Environment::handleKey(int key)
 		_active = false;
 	else if (key == 410)
 		getmaxyx(stdscr, _h, _w);
+	_player.event(key, _w);
+}
+void Environment::printAll(void) const
+{
+	WINDOW *point = NULL;
+
+	clear();
+	this->print(point, _player.getAbs(), _h - 2);
+	return;
 }
 void Environment::print(WINDOW *local_win, int x, int y) const
 {
@@ -55,9 +67,10 @@ void Environment::print(WINDOW *local_win, int x, int y) const
 		wborder(local_win, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
 		wrefresh(local_win);
 		delwin(local_win);
-		// delete local_win;
 	}
-	local_win = subwin(stdscr, 1, 1, y, x);
+	char cBlock = (char)0x2588;
+	addch(cBlock);
+	local_win = subwin(stdscr, 2, 4, y, x);
 	init_pair(2, COLOR_WHITE, COLOR_WHITE);
 	wbkgd(local_win, COLOR_PAIR(2));
 	box(local_win, 0, 0); /* 0, 0 gives default characters

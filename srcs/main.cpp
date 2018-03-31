@@ -2,6 +2,7 @@
 
 #include "PlayerShip.hpp"
 #include "Missile.hpp"
+#include "MissilePack.hpp"
 #include "Environment.hpp"
 #include <ncurses.h>
 
@@ -10,14 +11,12 @@ int main(void)
     PlayerShip toto("toto");
     Missile &pouet = toto.launchMissile();
     Environment env;
-    WINDOW *point = NULL;
-    env.print(point, 5, 5);
+
+    env.handleKey(0);
     while (env.isActive())
     {
         env.handleKey(getch());
-        env.print(point, 5, 5);
+        env.printAll();
     }
-    std::cout << env.getH() << "height and" << env.getW() << "width\n";
-
     return 0;
 }
