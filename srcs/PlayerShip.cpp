@@ -20,7 +20,7 @@ PlayerShip::PlayerShip(PlayerShip const &src)
 
 PlayerShip::~PlayerShip()
 {
-    std::cout << "player ship destroyed" << std::endl;
+    std::cout << "player ship destroyed -- x:[" << this->_x << "] y[" << this->_y << std::endl;
 }
 
 void    PlayerShip::print(int toDisplay, int elapsed_time) const
@@ -75,7 +75,7 @@ bool PlayerShip::moveRight(int width)
 Missile &PlayerShip::launchMissile()
 {
     std::cout << "launch_missile" << std::endl;
-    Missile *msl = new Missile(this->_atk);
+    Missile *msl = new Missile(this->_atk, this->_x, this->_y);
     return *msl;
 }
 

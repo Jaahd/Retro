@@ -45,7 +45,7 @@ bool Environment::isActive(void) const
 	return (this->_active);
 }
 
-void Environment::handleKey(int key)
+void Environment::handleKey(int key, int elapsed_time)
 {
 	if (key == ERR)
 		refresh();
@@ -62,8 +62,9 @@ void Environment::printAll(int elapsed_time) const
 {
 	clear();
 	this->_player.print('A', elapsed_time);
-    for (int i = 0; i < this->_missiles.getCount(); i++)
-        this->_missiles.getOne(i)->print('.', elapsed_time);
+	for (int i = 0; i < this->_missiles.getCount(); i++)
+    	this->_missiles.getOne(i)->print('.', elapsed_time);
+
 	refresh();
 	return;
 }

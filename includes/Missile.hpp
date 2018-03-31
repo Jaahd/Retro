@@ -7,13 +7,13 @@ class Missile
 {
   public:
     Missile(void);
-    Missile(int damages);
+    Missile(int damages, int x, int y);
     Missile(Missile const &src);
     ~Missile(void);
 
     bool check_target(); // TODO
     void move();
-    void print(int toDisplay, int elapsed_time) const;
+    void print(int toDisplay, int elapsed_time);
 
     Missile &operator=(Missile const &rhs);
 

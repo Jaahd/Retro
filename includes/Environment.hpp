@@ -17,7 +17,7 @@ class Environment
 	unsigned int getW(void) const;
 	unsigned int getH(void) const;
 	bool isActive(void) const;
-	void handleKey(int key);
+	void handleKey(int key, int elapsed_time);
 	void print(int x, int y, int toDisplay) const;
 	void checkCollisions();
 	void printAll(int elapsed_time) const;
@@ -27,7 +27,7 @@ class Environment
 	unsigned int _h;
 	bool _active;
 	PlayerShip _player;
-    MissilePack _missiles;
+  MissilePack _missiles;
 	Display _display;
 };
 

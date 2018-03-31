@@ -11,6 +11,7 @@ MissilePack::MissilePack(MissilePack const &src)
 
 MissilePack::~MissilePack()
 {
+	std::cout << "end missiles pack " << this->_count << std::endl;
 	if (!_current)
 		return;
 	for (int i = 0; i < _count; i++)
