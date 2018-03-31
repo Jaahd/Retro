@@ -5,51 +5,22 @@ class Missile
 {
   public:
     Missile(void);
-    Missile(int foo);
+    Missile(int damages);
     Missile(Missile const &src);
     ~Missile(void);
 
+    bool check_target(); // TODO
+
     Missile &operator=(Missile const &rhs);
 
-    int getValue(void) const;
-    void setValue(int foo);
+    int getSpeed(void) const;
+    void setSpeed(int speed);
+    int getDamages(void) const;
+    void setDamages(int damages);
 
   private:
-    int _foo;
-
+    int _speed;
+    int _damages;
 };
-
-Missile::Missile() : _speed(10), 
-{
-}
-
-Missile::Missile(int foo) : _foo(foo)
-{
-}
-
-Missile::Missile(Missile const &src)
-{
-    *this = src;
-}
-
-Missile::~Missile()
-{
-}
-
-int Missile::getValue(void) const
-{
-    return this->_foo;
-}
-
-void Missile::setValue(int foo)
-{
-    this->_foo = foo;
-}
-
-Missile &Missile::operator=(Missile const &rhs) {
-
-    this->_foo = rhs.getValue();
-    return *this;
-}
 
 #endif //MISSILE_HPP

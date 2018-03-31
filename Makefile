@@ -10,12 +10,12 @@ OPATH =		$(ROOT)/objs
 CPATH =		$(ROOT)/srcs
 HPATH =		$(ROOT)/includes
 
-CFLAGS = -Wall -Werror -Wextra -std=c++98 -I $(HPATH) -lncurses
+CFLAGS = -Wall -Werror -Wextra -std=c++98 -I $(HPATH) #-lncurses
 
 SRC = main.cpp \
 	  PlayerShip.cpp \
 	  Missile.cpp \
-	  Enemy.cpp
+	#  Enemy.cpp
 
 
 OFILES = $(patsubst %.cpp, $(OPATH)/%.o, $(SRC))

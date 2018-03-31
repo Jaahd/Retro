@@ -1,3 +1,4 @@
+#include <ncurses.h>
 #include "PlayerShip.hpp"
 
 PlayerShip::PlayerShip(void) : _name("ship"), _pv(20), _lvl(1), _speed(1)
@@ -20,16 +21,35 @@ PlayerShip::~PlayerShip()
 {
     std::cout << "player ship destroyed" << std::endl;
 }
-
-bool PlayerShip::move()
+void PlayerShip::move(int key, int width)
 {
+    if (key == KEY_LEFT)
+        this->moveLeft();
+    if (key == KEY_RIGHT)
+        this->moveRight();
+}
+
+// bool PlayerShip::moveForward()
+// {
+//     return true;
+// }
+bool PlayerShip::moveLeft()
+{
+    if (this->_abs > 0)
+        this->_abs--;
+    return true;
+}
+bool PlayerShip::moveRight()
+{
+    if (this->_abs < width)
+        this->_abs++;
     return true;
 }
 
-int PlayerShip::rangedAtk()
+Missile &PlayerShip::launchMissile()
 {
-    Missile *msl = new Missile();
-    return 0;
+    Missile *msl = new Missile(this->_atk);
+    return git msl;
 }
 
 std::string PlayerShip::getName(void) const
@@ -56,6 +76,22 @@ void PlayerShip::setLvl(int lvl)
 {
     this->_lvl = lvl;
 }
+int PlayerShip::getArmor(void) const
+{
+    return this->_armor;
+}
+void PlayerShip::setArmor(int armor)
+{
+    this->_armor = armor;
+}
+int PlayerShip::getAtk(void) const
+{
+    return this->_atk;
+}
+void PlayerShip::setAtk(int atk)
+{
+    this->_armor = atk;
+}
 int PlayerShip::getSpeed(void) const
 {
     return this->_speed;
@@ -67,8 +103,12 @@ void PlayerShip::setSpeed(int speed)
 
 PlayerShip &PlayerShip::operator=(PlayerShip const &rhs)
 {
+    this->_name = rhs.getName();
     this->_pv = rhs.getPv();
     this->_lvl = rhs.getLvl();
+    this->_armor = rhs.getArmor();
+    this->_atk = rhs.getAtk();
     this->_speed = rhs.getSpeed();
+
     return *this;
 }
