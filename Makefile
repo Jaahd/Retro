@@ -14,8 +14,9 @@ CFLAGS = -Wall  -Wextra -std=c++98 -I $(HPATH) -lncurses
 
 SRC = main.cpp \
 	  Environment.cpp \
-	  
-	  #PlayerShip.cpp \
+	  PlayerShip.cpp \
+	  Missile.cpp \
+	  Enemy.cpp
 
 
 OFILES = $(patsubst %.cpp, $(OPATH)/%.o, $(SRC))
