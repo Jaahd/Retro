@@ -25,7 +25,7 @@ Missile::~Missile()
 bool Missile::check_target()
 {
     std::cout << "missile hit target" << std::endl;
-    this->~Missile();
+    this->git~Missile();
     return true;
 }
 

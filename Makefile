@@ -12,7 +12,9 @@ HPATH =		$(ROOT)/includes
 
 CFLAGS = -Wall -Werror -Wextra -std=c++98 -I $(HPATH) #-lncurses
 
+
 SRC = main.cpp \
+	  Environment.cpp \
 	  PlayerShip.cpp \
 	  Missile.cpp \
 	#  Enemy.cpp
@@ -27,11 +29,11 @@ all: $(OPATH) $(NAME)
 $(NAME): $(OFILES)
 	@echo "Creating OBJ files"
 	@echo "Building $@"
-	@$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^
 	@echo "\033[36mAll is done!\033[0m"
 
 $(OPATH)/%.o: $(CPATH)/%.cpp
-	@$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OPATH):
 	@echo "Creating OBJ directory"
