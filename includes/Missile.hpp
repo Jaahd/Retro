@@ -15,9 +15,9 @@ class Missile
     Missile &operator=(Missile const &rhs);
 
     int getX(void) const;
-    void setX(new_x);
+    void setX(int new_x);
     int getY(void) const;
-    void setY(new_y);
+    void setY(int new_y);
     int getSpeed(void) const;
     void setSpeed(int speed);
     int getDamages(void) const;
