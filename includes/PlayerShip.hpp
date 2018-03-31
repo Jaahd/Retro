@@ -9,7 +9,7 @@ class PlayerShip : public IGameEntity
 {
   public:
     PlayerShip(void);
-    PlayerShip(std::string name);
+    PlayerShip(std::string const & name);
     PlayerShip(PlayerShip const &src);
     ~PlayerShip(void);
 
@@ -24,6 +24,8 @@ class PlayerShip : public IGameEntity
 
     std::string getName(void) const;
     void setName(std::string name);
+    int getAbs(void) const;
+    void setAbs(int abs);
     int getPv(void) const;
     void setPv(int pv);
     int getLvl(void) const;
