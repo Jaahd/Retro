@@ -1,12 +1,12 @@
 #include <ncurses.h>
 #include "PlayerShip.hpp"
 
-PlayerShip::PlayerShip(void) : _name("ship"), _pv(20), _lvl(1), _speed(1)
+PlayerShip::PlayerShip(void) : _name("ship"), _abs(0), _pv(20), _lvl(1), _armor(0), _atk(1), _speed(1)
 {
     std::cout << "player ship created" << std::endl;
 }
 
-PlayerShip::PlayerShip(std::string name) : _name(name), _pv(20), _lvl(1), _speed(1)
+PlayerShip::PlayerShip(std::string const & name) : _name(name), _abs(0), _pv(20), _lvl(1), _armor(0), _atk(1), _speed(1)
 {
     std::cout << "player ship created" << std::endl;
 }
@@ -60,6 +60,14 @@ void PlayerShip::setName(std::string name)
 {
     this->_name = name;
 }
+int PlayerShip::getAbs(void) const
+{
+    return this->_abs;
+}
+void PlayerShip::setAbs(int abs)
+{
+    this->_abs = abs;
+}
 int PlayerShip::getPv(void) const
 {
     return this->_pv;
@@ -104,6 +112,7 @@ void PlayerShip::setSpeed(int speed)
 PlayerShip &PlayerShip::operator=(PlayerShip const &rhs)
 {
     this->_name = rhs.getName();
+    this->_abs = rhs.getAbs();
     this->_pv = rhs.getPv();
     this->_lvl = rhs.getLvl();
     this->_armor = rhs.getArmor();
