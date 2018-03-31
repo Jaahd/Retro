@@ -1,15 +1,15 @@
-#include "MissilePack.hpp"
+#include "EnemyPack.hpp"
 
-MissilePack::MissilePack(void) : _current(0x0), _count(0)
+EnemyPack::EnemyPack(void) : _current(0x0), _count(0)
 {
 }
 
-MissilePack::MissilePack(MissilePack const &src)
+EnemyPack::EnemyPack(EnemyPack const &src)
 {
 	*this = src;
 }
 
-MissilePack::~MissilePack()
+EnemyPack::~EnemyPack()
 {
 	for (int i = 0; i < _count; i++)
 	{
@@ -18,12 +18,12 @@ MissilePack::~MissilePack()
 	delete[] _current;
 }
 
-Missile **MissilePack::getValue(void) const
+Enemy **EnemyPack::getValue(void) const
 {
 	return this->_current;
 }
 
-MissilePack &MissilePack::operator=(MissilePack const &rhs)
+EnemyPack &EnemyPack::operator=(EnemyPack const &rhs)
 {
 
 	this->_current = rhs.getValue();
@@ -31,24 +31,24 @@ MissilePack &MissilePack::operator=(MissilePack const &rhs)
 	return *this;
 }
 
-int MissilePack::getCount(void) const
+int EnemyPack::getCount(void) const
 {
 	return this->_count;
 }
 
-Missile *MissilePack::getOne(int n) const
+Enemy *EnemyPack::getOne(int n) const
 {
-	if (n < 0 || n > this->_count)
+	if (n < 0 || n > _count)
 		return NULL;
 	return _current[n];
 }
 
-int MissilePack::push(Missile *m)
+int EnemyPack::push(Enemy *m)
 {
-	Missile **tmp;
+	Enemy **tmp;
 	if (!m)
 		return _count;
-	tmp = new Missile *[_count + 1];
+	tmp = new Enemy *[_count + 1];
 	for (int i = 0; i < _count; i++)
 	{
 		tmp[i] = _current[i];
@@ -60,14 +60,14 @@ int MissilePack::push(Missile *m)
 	return _count;
 }
 
-int MissilePack::deleteOne(int n)
+int EnemyPack::deleteOne(int n)
 {
-	Missile **tmp;
+	Enemy **tmp;
 	int delta = 0;
 
 	if (n < 0)
 		return _count;
-	tmp = new Missile *[_count - 1];
+	tmp = new Enemy *[_count - 1];
 	for (int i = 0; i < _count; i++)
 	{
 		if (i != n)

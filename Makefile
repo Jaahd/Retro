@@ -18,7 +18,8 @@ SRC = main.cpp \
 	  PlayerShip.cpp \
 	  Missile.cpp \
 	  MissilePack.cpp \
-	#  Enemy.cpp
+	  EnemyPack.cpp \
+	  Enemy.cpp
 
 
 OFILES = $(patsubst %.cpp, $(OPATH)/%.o, $(SRC))

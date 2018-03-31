@@ -9,13 +9,12 @@ class PlayerShip : public IGameEntity
 {
   public:
     PlayerShip(void);
-    PlayerShip(std::string const & name);
+    PlayerShip(std::string const &name);
     PlayerShip(PlayerShip const &src);
     ~PlayerShip(void);
 
-
     // bool moveForward();
-    int event(int key, int width);
+    void event(int key, int width);
     bool moveLeft();
     bool moveRight(int width);
     Missile &launchMissile();
@@ -29,6 +28,8 @@ class PlayerShip : public IGameEntity
     void setX(int abs);
     int getY(void) const;
     void setY(int y);
+    int getWidth(void) const;
+    void setWidth(int width);
     int getPv(void) const;
     void setPv(int pv);
     int getLvl(void) const;
@@ -44,6 +45,7 @@ class PlayerShip : public IGameEntity
     std::string _name;
     int _x;
     int _y;
+    int _width;
     int _pv;
     int _lvl;
     int _armor;

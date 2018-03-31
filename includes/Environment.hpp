@@ -2,6 +2,7 @@
 #define ENVIRONMENT_HPP
 #include "PlayerShip.hpp"
 #include "MissilePack.hpp"
+#include "EnemyPack.hpp"
 #include <ncurses.h>
 #include <iostream>
 
@@ -27,7 +28,7 @@ class Environment
 	PlayerShip _player;
 	WINDOW *win;
 	MissilePack _missiles;
-	//EnemyPack _enemies;
+	EnemyPack _enemies;
 };
 
 #endif
