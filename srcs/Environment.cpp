@@ -57,7 +57,7 @@ void Environment::printAll(void) const
 	WINDOW *point = NULL;
 
 	clear();
-	this->print(point, _player.getAbs(), _h - 2);
+	this->print(point, _player.getX(), _h - 2);
 	return;
 }
 void Environment::print(WINDOW *local_win, int x, int y) const
@@ -79,6 +79,14 @@ void Environment::print(WINDOW *local_win, int x, int y) const
 	wrefresh(local_win);  /* Show that box 		*/
 	return;
 }
+
+// void Environment::checkCollisions(EnemyPack &enemies, MissilePack &missiles, PlayerShip &player);
+// {
+// 	for (int i = 0; i < enemies.getCount(); i++)
+// 	{
+// 		enemies.getOne().checkHit(missiles, player);
+// 	}
+// }
 
 Environment &Environment::operator=(Environment const &rhs)
 {

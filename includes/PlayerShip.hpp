@@ -25,8 +25,10 @@ class PlayerShip : public IGameEntity
 
     std::string getName(void) const;
     void setName(std::string name);
-    int getAbs(void) const;
-    void setAbs(int abs);
+    int getX(void) const;
+    void setX(int abs);
+    int getY(void) const;
+    void setY(int y);
     int getPv(void) const;
     void setPv(int pv);
     int getLvl(void) const;
@@ -40,7 +42,8 @@ class PlayerShip : public IGameEntity
 
   private:
     std::string _name;
-    int _abs;
+    int _x;
+    int _y;
     int _pv;
     int _lvl;
     int _armor;
