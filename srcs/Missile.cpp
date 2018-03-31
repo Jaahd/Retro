@@ -1,12 +1,12 @@
 #include <iostream>
 #include "Missile.hpp"
 
-Missile::Missile(void) : _speed(10), _damages(1)
+Missile::Missile(void) : _speed(1), _damages(1)
 {
     std::cout << "missile created" << std::endl;
 }
 
-Missile::Missile(int damages) : _speed(10), _damages(damages)
+Missile::Missile(int damages) : _speed(1), _damages(damages)
 {
     std::cout << "missile created" << std::endl;
 }
@@ -29,6 +29,27 @@ bool Missile::check_target()
     return true;
 }
 
+void Missile::move()
+{
+    this->_y -= this->_speed;
+}
+
+int Missile::getX(void) const
+{
+    return this->_x;
+}
+void Missile::setX(int new_x)
+{
+    this->_x = new_x;
+}
+int Missile::getY(void) const
+{
+    return this->_y;
+}
+void Missile::setY(int new_y)
+{
+    this->_y = new_y;
+}
 int Missile::getSpeed(void) const
 {
     return this->_speed;
