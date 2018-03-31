@@ -1,5 +1,6 @@
 #include <ncurses.h>
 #include "PlayerShip.hpp"
+#include "PlayerShip.hpp"
 
 PlayerShip::PlayerShip(void) : _name("ship"), _x(0), _pv(20), _lvl(1), _armor(0), _atk(1), _speed(1)
 {
@@ -21,7 +22,14 @@ PlayerShip::~PlayerShip()
 {
     std::cout << "player ship destroyed" << std::endl;
 }
-int PlayerShip::event(int key, int width)
+
+void    PlayerShip::print(void) const
+{
+    _display.print(_x, _y, COLOR_WHITE);
+    return;
+}
+
+void PlayerShip::event(int key, int width)
 {
     switch (key)
     {
@@ -55,6 +63,7 @@ bool PlayerShip::moveLeft()
         this->_x--;
     return true;
 }
+
 bool PlayerShip::moveRight(int width)
 {
     if (this->_x < width)
@@ -92,6 +101,14 @@ int PlayerShip::getY(void) const
 void PlayerShip::setY(int y)
 {
     this->_y = y;
+}
+int PlayerShip::getWidth(void) const
+{
+    return this->_width;
+}
+void PlayerShip::setWidth(int width)
+{
+    this->_width = width;
 }
 int PlayerShip::getPv(void) const
 {

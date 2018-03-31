@@ -1,5 +1,7 @@
 #include <iostream>
 #include "Missile.hpp"
+#include "Missile.hpp"
+
 
 Missile::Missile(void) : _speed(1), _damages(1)
 {
@@ -49,6 +51,14 @@ int Missile::getY(void) const
 void Missile::setY(int new_y)
 {
     this->_y = new_y;
+}
+int Missile::getWidth(void) const
+{
+    return this->_width;
+}
+void Missile::setWidth(int width)
+{
+    this->_width = width;
 }
 int Missile::getSpeed(void) const
 {

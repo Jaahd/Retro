@@ -5,6 +5,7 @@
 #include "IGameEntity.hpp"
 #include "Missile.hpp"
 #include "MissilePack.hpp"
+#include "Display.hpp"
 
 class PlayerShip : public IGameEntity
 {
@@ -15,7 +16,7 @@ public:
   ~PlayerShip(void);
 
   // bool moveForward();
-  int event(int key, int width);
+  void event(int key, int width);
   bool moveLeft();
   bool moveRight(int width);
   Missile &launchMissile();
@@ -29,6 +30,8 @@ public:
   void setX(int abs);
   int getY(void) const;
   void setY(int y);
+  int getWidth(void) const;
+  void setWidth(int width);
   int getPv(void) const;
   void setPv(int pv);
   int getLvl(void) const;
@@ -39,17 +42,20 @@ public:
   void setAtk(int Atk);
   int getSpeed(void) const;
   void setSpeed(int lvl);
+  void print(void) const;
 
 private:
   std::string _name;
   int _x;
   int _y;
+  int _width;
   int _pv;
   int _lvl;
   int _armor;
   int _atk;
   int _speed; // usefull???
   MissilePack _missiles;
+  Display _display;
 };
 
 #endif // PLAYERSHIP_HPP

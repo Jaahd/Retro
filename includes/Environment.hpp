@@ -2,6 +2,8 @@
 #define ENVIRONMENT_HPP
 #include "PlayerShip.hpp"
 #include "MissilePack.hpp"
+#include "EnemyPack.hpp"
+#include "Display.hpp"
 #include <ncurses.h>
 #include <iostream>
 
@@ -25,8 +27,8 @@ class Environment
 	unsigned int _h;
 	bool _active;
 	PlayerShip _player;
-	// MissilePack _missiles;
-	//EnemyPack _enemies;
+	EnemyPack _enemies;
+	Display _display;
 };
 
 #endif
