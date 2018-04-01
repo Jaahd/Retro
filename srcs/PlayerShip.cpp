@@ -3,12 +3,12 @@
 #include "PlayerShip.hpp"
 #include "PlayerShip.hpp"
 
-PlayerShip::PlayerShip(void) : _name("ship"), _x(10), _width(5), _pv(5), _lvl(1), _armor(0), _atk(1), _speed(1), _score(0)
+PlayerShip::PlayerShip(void) : _name("ship"), _x(10), _width(5), _pv(5), _lvl(1), _armor(0), _atk(1), _speed(2), _score(0)
 {
     std::cout << "player ship created" << std::endl;
 }
 
-PlayerShip::PlayerShip(std::string const &name) : _name(name), _x(10), _width(5), _pv(5), _lvl(1), _armor(0), _atk(1), _speed(1), _score(0)
+PlayerShip::PlayerShip(std::string const &name) : _name(name), _x(10), _width(5), _pv(5), _lvl(1), _armor(0), _atk(1), _speed(2), _score(0)
 {
     std::cout << "player ship created" << std::endl;
 }
@@ -64,14 +64,14 @@ void PlayerShip::event(int key, int width)
 bool PlayerShip::moveLeft()
 {
     if (this->_x > 0)
-        this->_x--;
+        this->_x -= _speed;
     return true;
 }
 
 bool PlayerShip::moveRight(int width)
 {
-    if (this->_x < width)
-        this->_x++;
+    if (this->_x + _width + 1 < width)
+        this->_x += _speed;
     return true;
 }
 
