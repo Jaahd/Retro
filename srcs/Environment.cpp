@@ -130,14 +130,14 @@ PlayerShip &Environment::getPlayer(void)
 {
     return this->_player;
 }
-bool Environment::newGame()
-{
-    clear();
-    box(stdscr, 0, 0);
-    mvprintw(this->_w / 2, this->_h / 2, "GAME OVER");
-    sleep(5);
-    refresh();
-}
+// bool Environment::newGame()
+// {
+//     clear();
+//     box(stdscr, 0, 0);
+//     mvprintw(this->_w / 2, this->_h / 2, "GAME OVER");
+//     sleep(5);
+//     refresh();
+// }
 Environment &Environment::operator=(Environment const &rhs)
 {
     //add equality

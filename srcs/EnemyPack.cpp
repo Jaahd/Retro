@@ -53,7 +53,7 @@ void EnemyPack::randomChump(int width)
     int pop = rand() % 40;
     if (pop == 1)
     {
-        int size = rand() % 5;
+        int size = (rand() % 4) + 1;
         std::stringstream ss;
         for (int i = 0; i < size; i++)
             ss << "O";
