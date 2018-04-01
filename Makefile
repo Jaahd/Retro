@@ -33,11 +33,11 @@ all: $(OPATH) $(NAME)
 $(NAME): $(OFILES)
 	@echo "Creating OBJ files"
 	@echo "Building OBJ files"
-	$(CC) $(CFLAGS) $(LFLAGS) -o $@ $^
+	@$(CC) $(CFLAGS) $(LFLAGS) -o $@ $^
 	@echo "\033[36mAll is done!\033[0m"
 
 $(OPATH)/%.o: $(CPATH)/%.cpp
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(OPATH):
 	@echo "Creating OBJ directory"
