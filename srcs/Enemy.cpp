@@ -24,6 +24,7 @@ bool Enemy::checkHit(MissilePack &missiles, PlayerShip &player)
 
     int playerX = player.getX();
     int playerWidth = player.getWidth();
+    mvprintw(2, 2, "check collision cdt1(%d) cdt2(%d)", this->_x + this->_width - playerX, playerX + playerWidth - this->_x);
     if (this->_x + this->_width - playerX || playerX + playerWidth - this->_x)
         return true;
 

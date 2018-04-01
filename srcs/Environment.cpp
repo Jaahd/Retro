@@ -105,10 +105,11 @@ void Environment::checkCollisions(PlayerShip &player)
     MissilePack &missiles = player.getMissiles();
     int nbEnemies = this->_enemies.getCount();
     mvprintw(6, 2, "ng Enemies {%d}", nbEnemies);
-	for (int i = 0; i < nbEnemies; i++)
-	{
-		this->_enemies.getOne(i)->checkHit(missiles, player);
-	}
+    this->_enemies.checkCollisions(player);
+	// for (int i = 0; i < nbEnemies; i++)
+	// {
+	// 	this->_enemies.getOne(i)->checkHit(missiles, player);
+	// }
 }
 PlayerShip &Environment::getPlayer(void)
 {

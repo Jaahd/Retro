@@ -58,6 +58,7 @@ void EnemyPack::randomChump(int width)
 }
 void EnemyPack::checkCollisions(PlayerShip &player)
 {
+    mvprintw(4, 2, "check collision gal");
     MissilePack missiles = player.getMissiles();
     for (int i = 0; i < this->_count; i++)
         this->_current[i]->checkHit(missiles, player);
