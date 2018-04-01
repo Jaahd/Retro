@@ -1,27 +1,23 @@
 #include <ncurses.h>
 #include <iostream>
 #include "PlayerShip.hpp"
-#include "PlayerShip.hpp"
+
 
 PlayerShip::PlayerShip(void) : _name("ship"), _x(10), _width(5), _pv(5), _lvl(1), _armor(0), _atk(1), _speed(2), _score(0)
 {
-    std::cout << "player ship created" << std::endl;
 }
 
 PlayerShip::PlayerShip(std::string const &name) : _name(name), _x(10), _width(5), _pv(5), _lvl(1), _armor(0), _atk(1), _speed(2), _score(0)
 {
-    std::cout << "player ship created" << std::endl;
 }
 
 PlayerShip::PlayerShip(PlayerShip const &src)
 {
-    std::cout << "player ship created" << std::endl;
     *this = src;
 }
 
 PlayerShip::~PlayerShip()
 {
-    std::cout << "player ship destroyed -- x:[" << this->_x << "] y[" << this->_y << std::endl;
 }
 
 void PlayerShip::print(std::string toDisplay) const
@@ -32,8 +28,6 @@ void PlayerShip::print(std::string toDisplay) const
 int PlayerShip::pvLost()
 {
     this->_pv--;
-    if (this->_pv == 0)
-        return DEAD;
     return this->_pv;
 }
 

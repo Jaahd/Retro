@@ -2,7 +2,6 @@
 #define DISPLAY_HPP
 #include <iostream>
 #include <ncurses.h>
-#include <iostream>
 
 class Display
 {
@@ -12,7 +11,7 @@ class Display
 	~Display(void);
 
 	void print(int x, int y, int color,std::string toDisplay) const;
-    
+
 	Display &operator=(Display const &rhs);
 };
 

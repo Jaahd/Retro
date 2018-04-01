@@ -2,14 +2,13 @@
 #define PLAYERSHIP_HPP
 
 #include <iostream>
-#include "IGameEntity.hpp"
 #include "Missile.hpp"
 #include "MissilePack.hpp"
 #include "Display.hpp"
 
 #define DEAD -2
 
-class PlayerShip : public IGameEntity
+class PlayerShip
 {
 public:
   PlayerShip(void);
@@ -61,7 +60,7 @@ private:
   int _lvl;
   int _armor;
   int _atk;
-  int _speed; // usefull???
+  int _speed;
   int _score;
   MissilePack _missiles;
   Display _display;

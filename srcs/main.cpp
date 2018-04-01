@@ -16,7 +16,6 @@ int main(void)
     env.handleKey(0);
     while (env.isActive())
     {
-        //printw("pv {%d}", env.getPlayer().getPv()); /* Print Hello World    */
         env.checkCollisions();
         env.handleKey(getch());
         env.printAll();

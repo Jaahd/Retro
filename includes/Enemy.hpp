@@ -1,7 +1,6 @@
 #ifndef ENEMY_HPP
 #define ENEMY_HPP
 
-#include <iostream>
 #include "MissilePack.hpp"
 #include "PlayerShip.hpp"
 

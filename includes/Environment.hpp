@@ -20,8 +20,7 @@ class Environment
     int checkCollisions();
     void printAll();
     void removeObjects();
-    PlayerShip &getPlayer();
-    bool newGame();
+    PlayerShip getPlayer() const;
 
     unsigned int getW(void) const;
     unsigned int getH(void) const;

@@ -3,7 +3,6 @@
 
 Display::Display(void)
 {
-	return;
 }
 
 Display::Display(Display const &src)
@@ -14,8 +13,6 @@ Display::Display(Display const &src)
 
 Display::~Display()
 {
-	//std::cout << "Display destroy\n";
-	return;
 }
 
 void Display::print(int x, int y, int color, std::string toDisplay) const

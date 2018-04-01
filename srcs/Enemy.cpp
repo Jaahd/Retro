@@ -20,9 +20,14 @@ Enemy::~Enemy()
 {
 }
 
+void Enemy::print()
+{
+    this->_y += this->_speed;
+    this->_display.print(this->_x, this->_y, COLOR_WHITE, this->_toDisplay);
+    return;
+}
 int Enemy::checkHit(MissilePack &missiles, PlayerShip &player)
 {
-
     int playerX = player.getX();
     int playerY = player.getY();
     int playerWidth = player.getWidth();
@@ -34,7 +39,7 @@ int Enemy::checkHit(MissilePack &missiles, PlayerShip &player)
     {
         if ((this->_x >= playerX && this->_x <= playerX + playerWidth) || (this->_x + _width >= playerX && this->_x + _width <= playerX + playerWidth))
         {
-            //player.pvLost();
+          //  player.pvLost();
             return 3;
         }
     }
@@ -52,13 +57,6 @@ int Enemy::checkHit(MissilePack &missiles, PlayerShip &player)
     }
 
     return false;
-}
-void Enemy::print()
-{
-    // mvprintw(2, 2, "enemy x(%d) y(%d)", this->_x, this->_y);
-    this->_y += this->_speed;
-    this->_display.print(this->_x, this->_y, COLOR_WHITE, this->_toDisplay);
-    return;
 }
 
 int Enemy::getX(void) const

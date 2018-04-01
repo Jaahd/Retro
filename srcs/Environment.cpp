@@ -12,9 +12,9 @@ Environment::Environment(void)
     noecho();
     curs_set(0);
     getmaxyx(stdscr, this->_h, this->_w);
-    if (_w > 50)
+    if (_w > 80)
     {
-        _w = 50;
+        _w = 80;
         resizeterm(_h, _w);
     }
     //start_color();
@@ -55,8 +55,7 @@ bool Environment::isActive(void) const
 void Environment::handleKey(int key)
 {
     flushinp();
-    if (key == ERR)
-        refresh();
+
     if (key == 27)
         this->_active = false;
     else if (key == 410)
@@ -72,7 +71,14 @@ void Environment::printAll()
     if (this->_player.getPv() == 0)
     {
         clear();
-        mvprintw(20, 20, "game over");
+
+        mvprintw(20, 10, "  __ _  __ _ _ __ ___   ___    _____   _____ _ __");
+        mvprintw(21, 10, " / _` |/ _` | '_ ` _ \\ / _ \\  / _ \\ \\ / / _ \\ '__|");
+        mvprintw(22, 10, "| (_| | (_| | | | | | |  __/ | (_) \\ V /  __/ |");
+        mvprintw(23, 10, " \\__, |\\__,_|_| |_| |_|\\___|  \\___/ \\_/ \\___|_|");
+        mvprintw(24, 10, " __/ |");
+        mvprintw(25, 10, "|___/");
+
         refresh();
         sleep(5);
         _active = false;
@@ -91,7 +97,6 @@ void Environment::printAll()
 }
 void Environment::print(int x, int y, int toDisplay) const
 {
-
     attron(COLOR_PAIR(1));
     mvaddch(y, x, toDisplay);
     attroff(COLOR_PAIR(1));
@@ -116,7 +121,6 @@ void Environment::removeObjects()
 
 int Environment::checkCollisions(void)
 {
-    //mvprintw(5, 2, "check coll");
     MissilePack &missiles = _player.getMissiles();
     int nbEnemies = this->_enemies.getCount();
     for (int i = 0; i < nbEnemies; i++)
@@ -132,23 +136,16 @@ int Environment::checkCollisions(void)
     }
     return 0;
 }
-PlayerShip &Environment::getPlayer(void)
+PlayerShip Environment::getPlayer(void) const
 {
     return this->_player;
 }
-// bool Environment::newGame()
-// {
-//     clear();
-//     box(stdscr, 0, 0);
-//     mvprintw(this->_w / 2, this->_h / 2, "GAME OVER");
-//     sleep(5);
-//     refresh();
-// }
+
 Environment &Environment::operator=(Environment const &rhs)
 {
-    //add equality
     this->_h = rhs.getH();
     this->_w = rhs.getW();
     this->_active = rhs.isActive();
+    this->_player = rhs.getPlayer();
     return *this;
 }
