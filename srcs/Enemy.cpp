@@ -31,7 +31,7 @@ int Enemy::checkHit(MissilePack &missiles, PlayerShip &player)
 
     if (_y + _speed >= playerY)
     {
-        if ((this->_x >= playerX && this->_x <= playerX + playerWidth ) || (this->_x + _width >= playerX && this->_x + _width <= playerX + playerWidth ))
+        if ((this->_x >= playerX && this->_x <= playerX + playerWidth) || (this->_x + _width >= playerX && this->_x + _width <= playerX + playerWidth))
         {
             player.pvLost();
             return true;
@@ -42,8 +42,9 @@ int Enemy::checkHit(MissilePack &missiles, PlayerShip &player)
         Missile *currMissile = missiles.getOne(i);
         mx = currMissile->getX();
         mw = currMissile->getWidth();
-        if (this->_y >= currMissile->getY() - currMissile->getSpeed() && (mx >= _x && mx <= _x + _width - 1 ))
+        if (this->_y >= currMissile->getY() - currMissile->getSpeed() && (mx >= _x && mx <= _x + _width - 1))
         {
+            player.addPoint(10);
             missiles.deleteOne(i);
             return true;
         }

@@ -46,9 +46,11 @@ public:
   void setAtk(int Atk);
   int getSpeed(void) const;
   void setSpeed(int lvl);
+  int getScore(void) const;
+  void setScore(int score);
+  void addPoint(int point);
   MissilePack &getMissiles();
   Display &getDisplay();
-
 
 private:
   std::string _name;
@@ -60,6 +62,7 @@ private:
   int _armor;
   int _atk;
   int _speed; // usefull???
+  int _score;
   MissilePack _missiles;
   Display _display;
 };

@@ -72,10 +72,11 @@ void Environment::printAll()
         _active = false;
     }
     this->_enemies.event(this->_w, this->_h);
-    clear();
     this->checkCollisions();
-    //box(stdscr, 0, 0);
-    // this->checkCollisions();
+    clear();
+    box(stdscr, 0, 0);
+    mvprintw(0, 1, "Score: %d", _player.getScore());
+    mvprintw(1, 1, "HP: %d", _player.getPv());
     this->_player.print('A');
     this->_player.getMissiles().printAll();
     this->_enemies.printAll();
@@ -112,7 +113,6 @@ int Environment::checkCollisions(void)
     //mvprintw(5, 2, "check coll");
     MissilePack &missiles = _player.getMissiles();
     int nbEnemies = this->_enemies.getCount();
-    mvprintw(6, 2, "hp {%d}", _player.getPv());
     for (int i = 0; i < nbEnemies; i++)
     {
         int hit = this->_enemies.getOne(i)->checkHit(missiles, _player);

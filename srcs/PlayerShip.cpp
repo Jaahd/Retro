@@ -2,12 +2,12 @@
 #include "PlayerShip.hpp"
 #include "PlayerShip.hpp"
 
-PlayerShip::PlayerShip(void) : _name("ship"), _x(10), _pv(20), _lvl(1), _armor(0),_width(0), _atk(1), _speed(1)
+PlayerShip::PlayerShip(void) : _name("ship"), _x(10), _width(1), _pv(5), _lvl(1), _armor(0), _atk(1), _speed(1), _score(0)
 {
     std::cout << "player ship created" << std::endl;
 }
 
-PlayerShip::PlayerShip(std::string const &name) : _name(name), _x(10), _pv(3), _lvl(1), _armor(0), _atk(1), _speed(1)
+PlayerShip::PlayerShip(std::string const &name) : _name(name), _x(10), _width(1), _pv(5), _lvl(1), _armor(0), _atk(1), _speed(1), _score(0)
 {
     std::cout << "player ship created" << std::endl;
 }
@@ -35,6 +35,7 @@ int PlayerShip::pvLost()
         return DEAD;
     return this->_pv;
 }
+
 void PlayerShip::event(int key, int width)
 {
     switch (key)
@@ -152,14 +153,30 @@ void PlayerShip::setSpeed(int speed)
 {
     this->_speed = speed;
 }
-MissilePack & PlayerShip::getMissiles(void)
+MissilePack &PlayerShip::getMissiles(void)
 {
     return this->_missiles;
 }
-Display & PlayerShip::getDisplay(void)
+Display &PlayerShip::getDisplay(void)
 {
     return this->_display;
 }
+
+int PlayerShip::getScore(void) const
+{
+    return this->_score;
+}
+
+void PlayerShip::setScore(int score)
+{
+    this->_score = score;
+}
+
+void PlayerShip::addPoint(int point)
+{
+    _score += point;
+}
+
 PlayerShip &PlayerShip::operator=(PlayerShip const &rhs)
 {
     this->_name = rhs.getName();
@@ -171,6 +188,7 @@ PlayerShip &PlayerShip::operator=(PlayerShip const &rhs)
     this->_armor = rhs.getArmor();
     this->_atk = rhs.getAtk();
     this->_speed = rhs.getSpeed();
+    this->_score = rhs.getScore();
     // this->_missiles = rhs.getMissiles();
     // this->_display = rhs.getDisplay();
 

@@ -21,7 +21,7 @@ int main(void)
         env.handleKey(getch());
         env.printAll();
         env.removeObjects();
-        usleep(50000);
+        usleep(40000);
     }
 
     return 0;
