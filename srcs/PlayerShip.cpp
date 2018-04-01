@@ -1,4 +1,5 @@
 #include <ncurses.h>
+#include <iostream>
 #include "PlayerShip.hpp"
 #include "PlayerShip.hpp"
 
@@ -23,7 +24,7 @@ PlayerShip::~PlayerShip()
     std::cout << "player ship destroyed -- x:[" << this->_x << "] y[" << this->_y << std::endl;
 }
 
-void PlayerShip::print(int toDisplay) const
+void PlayerShip::print(std::string toDisplay) const
 {
     _display.print(_x, _y, COLOR_WHITE, toDisplay);
     return;

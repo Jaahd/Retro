@@ -1,4 +1,5 @@
 #include <ctime>
+#include <sstream>
 #include "EnemyPack.hpp"
 
 EnemyPack::EnemyPack(void) : _current(0x0), _count(0)
@@ -52,7 +53,12 @@ void EnemyPack::event(int width)
     int pop = rand() % 40;
     if (pop == 1)
     {
-        Enemy *enemy = new Enemy(x, 0, 1, 1, 'O');
+        int size = rand() % 5;
+        std::stringstream ss;
+        for (int i = 0; i < size; i++)
+            ss << "O";
+
+        Enemy *enemy = new Enemy(x, 0, size, 1, size, ss.str());
         this->push(enemy);
     }
 }

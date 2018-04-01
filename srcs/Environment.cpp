@@ -76,7 +76,7 @@ void Environment::printAll()
     this->checkCollisions();
     //box(stdscr, 0, 0);
     // this->checkCollisions();
-    this->_player.print('A');
+    this->_player.print("A");
     this->_player.getMissiles().printAll();
     this->_enemies.printAll();
     refresh();

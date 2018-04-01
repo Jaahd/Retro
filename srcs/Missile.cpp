@@ -2,12 +2,12 @@
 #include "Missile.hpp"
 #include "Missile.hpp"
 
-Missile::Missile(void) : _speed(1), _damages(1), _toDisplay('.')
+Missile::Missile(void) : _speed(1), _damages(1), _toDisplay(".")
 {
     //std::cout << "missile created" << std::endl;
 }
 
-Missile::Missile(int damages, int x, int y) : _x(x), _y(y), _speed(1), _damages(damages), _toDisplay('.')
+Missile::Missile(int damages, int x, int y) : _x(x), _y(y), _speed(1), _damages(damages), _toDisplay(".")
 {
     // std::cout << "missile created" << std::endl;
 }

@@ -1,6 +1,7 @@
 #ifndef ENEMY_HPP
 #define ENEMY_HPP
 
+#include <iostream>
 #include "MissilePack.hpp"
 #include "PlayerShip.hpp"
 
@@ -8,7 +9,7 @@ class Enemy
 {
   public:
     Enemy(void);
-    Enemy(int x, int y, int width, int speed, int toDisplay);
+    Enemy(int x, int y, int width, int speed, int pv, std::string toDisplay);
     Enemy(Enemy const &src);
     ~Enemy(void);
 
@@ -22,6 +23,8 @@ class Enemy
     void setY(int y);
     int getWidth(void) const;
     void setWidth(int width);
+    int getPv(void) const;
+    void setPv(int pv);
     void print();
 
   private:
@@ -29,7 +32,8 @@ class Enemy
     int _y;
     int _width;
     int _speed;
-    int _toDisplay;
+    int _pv;
+    std::string _toDisplay;
     Display _display;
 };
 
