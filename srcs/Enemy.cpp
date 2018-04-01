@@ -31,7 +31,7 @@ int Enemy::checkHit(MissilePack &missiles, PlayerShip &player)
 
     if (_y + _speed >= playerY)
     {
-        if ((this->_x >= playerX && this->_x <= playerX + playerWidth) || (this->_x + _width >= playerX && this->_x + _width <= playerX + playerWidth))
+        if ((this->_x >= playerX && this->_x <= playerX + playerWidth ) || (this->_x + _width >= playerX && this->_x + _width <= playerX + playerWidth ))
         {
             player.pvLost();
             return true;
