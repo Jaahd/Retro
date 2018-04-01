@@ -2,7 +2,7 @@
 #include "PlayerShip.hpp"
 #include "PlayerShip.hpp"
 
-PlayerShip::PlayerShip(void) : _name("ship"), _x(10), _pv(20), _lvl(1), _armor(0), _atk(1), _speed(1)
+PlayerShip::PlayerShip(void) : _name("ship"), _x(10), _pv(20), _lvl(1), _armor(0),_width(0), _atk(1), _speed(1)
 {
     std::cout << "player ship created" << std::endl;
 }

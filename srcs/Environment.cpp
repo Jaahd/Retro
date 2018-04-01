@@ -11,7 +11,7 @@ Environment::Environment(void)
     curs_set(0);
     getmaxyx(stdscr, this->_h, this->_w);
     //start_color();
-    this->_player.setY(this->_h - 2);
+    this->_player.setY(this->_h - 5);
     this->_active = true;
     return;
 }
@@ -64,7 +64,8 @@ void Environment::printAll()
 {
     this->_enemies.event(this->_w);
     clear();
-    box(stdscr, 0, 0);
+    this->checkCollisions();
+    //box(stdscr, 0, 0);
     // this->checkCollisions();
     this->_player.print('A');
     this->_player.getMissiles().printAll();

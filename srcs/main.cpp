@@ -16,7 +16,7 @@ int main(void)
     env.handleKey(0);
     while (env.isActive())
     {
-        env.checkCollisions();
+        // env.checkCollisions();
         env.handleKey(getch());
         env.printAll();
         env.removeObjects();

@@ -26,28 +26,22 @@ bool Enemy::checkHit(MissilePack &missiles, PlayerShip &player)
     int playerY = player.getY();
     int playerWidth = player.getWidth();
     int count = missiles.getCount();
-    static int touch = 0;
     int mx;
     int mw;
 
-    // if (this->_x + this->_width - playerX || playerX + playerWidth - this->_x)
-    //     return true;
-    // mvprintw(4, 5, "current missile %d", count);
-    // if (touch)
-    //     mvprintw(5, 5, "%d", touch);
-    if (_y == playerY)
+    if (_y + _speed >= playerY)
     {
-        if ((this->_x >= playerX && this->_x <= playerX + playerWidth) || (this->_x + _width >= playerX && this->_x + _width <= playerX + playerWidth) )
+        if ((playerX >= _x && playerX + playerWidth - 1 <= _x) ||
+        (_x >= playerX && _x + _width - 1 <= playerX))
             return true;
     }
-    for (int i = 0; i < missiles.getCount(); i++)
+    for (int i = 0; i < count; i++)
     {
         Missile *currMissile = missiles.getOne(i);
         mx = currMissile->getX();
         mw = currMissile->getWidth();
-        if (this->_y == currMissile->getY() && ((this->_x >= mx && this->_x <= mx+mw) || (this->_x + _width >= mx && this->_x + _width <= mx + mw)))
+        if (this->_y >= currMissile->getY() - currMissile->getSpeed() && (mx >= _x && mx <= _x + _width - 1 ))
         {
-            touch++;
             missiles.deleteOne(i);
             return true;
         }
