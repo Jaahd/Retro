@@ -45,7 +45,7 @@ bool Environment::isActive(void) const
     return (this->_active);
 }
 
-void Environment::handleKey(int key, int elapsed_time)
+void Environment::handleKey(int key)
 {
     if (key == ERR)
         refresh();
@@ -60,13 +60,15 @@ void Environment::handleKey(int key, int elapsed_time)
     this->_player.event(key, this->_w);
     flushinp();
 }
-void Environment::printAll(int elapsed_time)
+void Environment::printAll()
 {
     clear();
-    this->_player.print('A', elapsed_time);
+    this->_player.print('A');
     this->_player.getMissiles().printAll();
+    this->_enemies.event(this->_w);
+    this->checkCollisions(this->_player);
     this->_enemies.printAll();
-    
+
     box(stdscr, 0, 0);
     refresh();
     return;
@@ -82,7 +84,7 @@ void Environment::print(int x, int y, int toDisplay) const
 
     return;
 }
-void Environment::removeObjects()
+void Environment::removeObjects(PlayerShip &player)
 {
     int nbMissiles = this->_player.getMissiles().getCount();
     for (int i = 0; i < nbMissiles; i++)
@@ -94,14 +96,20 @@ void Environment::removeObjects()
             return;
         }
     }
+
 }
-// void Environment::checkCollisions(EnemyPack &enemies, MissilePack &missiles, PlayerShip &player);
-// {
-// 	for (int i = 0; i < enemies.getCount(); i++)
-// 	{
-// 		enemies.getOne().checkHit(missiles, player);
-// 	}
-// }
+
+void Environment::checkCollisions(PlayerShip &player)
+{
+    mvprintw(5, 2, "check coll");
+    MissilePack &missiles = player.getMissiles();
+    int nbEnemies = this->_enemies.getCount();
+    mvprintw(6, 2, "ng Enemies {%d}", nbEnemies);
+	for (int i = 0; i < nbEnemies; i++)
+	{
+		this->_enemies.getOne(i)->checkHit(missiles, player);
+	}
+}
 PlayerShip &Environment::getPlayer(void)
 {
     return this->_player;

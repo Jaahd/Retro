@@ -13,14 +13,12 @@ int main(void)
 {
     Environment env;
 
-    env.handleKey(0, 0);
-    int tempo = 0;
+    env.handleKey(0);
     while (env.isActive())
     {
-        env.handleKey(getch(), tempo);
-        // add enemies
-        env.printAll(tempo);
-        env.removeObjects();
+        env.handleKey(getch());
+        env.printAll();
+        env.removeObjects(env.getPlayer());
         usleep(50000);
     }
 

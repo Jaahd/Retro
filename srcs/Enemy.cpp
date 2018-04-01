@@ -22,7 +22,9 @@ Enemy::~Enemy()
 bool Enemy::checkHit(MissilePack &missiles, PlayerShip &player)
 {
 
-    if (this->_x + this->_width - player.getX() || player.getX() + player.getWidth() - this->_x)
+    int playerX = player.getX();
+    int playerWidth = player.getWidth();
+    if (this->_x + this->_width - playerX || playerX + playerWidth - this->_x)
         return true;
 
     for (int i = 0; i < missiles.getCount(); i++)
@@ -37,7 +39,7 @@ bool Enemy::checkHit(MissilePack &missiles, PlayerShip &player)
 void Enemy::print()
 {
     mvprintw(2, 2, "enemy x(%d) y(%d)", this->_x, this->_y);
-    this->_y =+ this->_speed;
+    this->_y += this->_speed;
     this->_display.print(this->_x, this->_y, COLOR_WHITE, this->_toDisplay);
     return;
 }

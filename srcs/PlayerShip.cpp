@@ -23,9 +23,8 @@ PlayerShip::~PlayerShip()
     std::cout << "player ship destroyed -- x:[" << this->_x << "] y[" << this->_y << std::endl;
 }
 
-void PlayerShip::print(int toDisplay, int elapsed_time) const
+void PlayerShip::print(int toDisplay) const
 {
-    (void)elapsed_time;
     _display.print(_x, _y, COLOR_WHITE, toDisplay);
     return;
 }

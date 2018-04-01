@@ -17,11 +17,11 @@ class Environment
     unsigned int getW(void) const;
     unsigned int getH(void) const;
     bool isActive(void) const;
-    void handleKey(int key, int elapsed_time);
+    void handleKey(int key);
     void print(int x, int y, int toDisplay) const;
-    void checkCollisions();
-    void printAll(int elapsed_time);
-    void removeObjects();
+    void checkCollisions(PlayerShip &player);
+    void printAll();
+    void removeObjects(PlayerShip &player);
     PlayerShip &getPlayer();
 
   private:
