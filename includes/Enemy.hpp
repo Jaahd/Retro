@@ -13,9 +13,8 @@ class Enemy
     Enemy(Enemy const &src);
     ~Enemy(void);
 
+    void print();
     int checkHit(MissilePack &missiles, PlayerShip &palyer);
-
-    Enemy &operator=(Enemy const &rhs);
 
     int getX(void) const;
     void setX(int x);
@@ -25,7 +24,8 @@ class Enemy
     void setWidth(int width);
     int getPv(void) const;
     void setPv(int pv);
-    void print();
+
+    Enemy &operator=(Enemy const &rhs);
 
   private:
     int _x;

@@ -10,12 +10,10 @@
 class Environment
 {
   public:
-    Environment(void);                              //canonical
-    Environment(Environment const &src);            //canonical
-    ~Environment(void);                             //canonical
-    Environment &operator=(Environment const &rhs); //canonical
-    unsigned int getW(void) const;
-    unsigned int getH(void) const;
+    Environment(void);
+    Environment(Environment const &src);
+    ~Environment(void);
+
     bool isActive(void) const;
     void handleKey(int key);
     void print(int x, int y, int toDisplay) const;
@@ -24,6 +22,10 @@ class Environment
     void removeObjects();
     PlayerShip &getPlayer();
     bool newGame();
+
+    unsigned int getW(void) const;
+    unsigned int getH(void) const;
+    Environment &operator=(Environment const &rhs);
 
   private:
     unsigned int _w;
