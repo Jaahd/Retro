@@ -71,7 +71,7 @@ void Environment::printAll()
         sleep(5);
         _active = false;
     }
-    this->_enemies.event(this->_w);
+    this->_enemies.event(this->_w, this->_h);
     clear();
     this->checkCollisions();
     //box(stdscr, 0, 0);

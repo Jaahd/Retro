@@ -47,7 +47,7 @@ Enemy *EnemyPack::getOne(int n) const
 		return NULL;
 	return _current[n];
 }
-void EnemyPack::event(int width)
+void EnemyPack::randomChump(int width)
 {
     int x = rand() % (width - 1);
     int pop = rand() % 40;
@@ -61,6 +61,17 @@ void EnemyPack::event(int width)
         Enemy *enemy = new Enemy(x, 0, size, 1, size, ss.str());
         this->push(enemy);
     }
+}
+
+void EnemyPack::event(int width, int height)
+{
+	for (int i = 0; i < _count; i++)
+	{
+		if(_current[i]->getY() > height)
+			this->deleteOne(i);
+	}
+    this->randomChump(width);
+
 }
 void EnemyPack::printAll(void)
 {

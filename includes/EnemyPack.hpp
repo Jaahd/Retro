@@ -18,9 +18,9 @@ class EnemyPack
 	Enemy *getOne(int) const;
 	int deleteOne(int n);
 	int getCount(void) const;
-    void event(int width);
+    void event(int width, int height);
     void printAll(void);
-    // void randomChump(int width);
+     void randomChump(int width);
     // void checkCollisions(PlayerShip &player);
 
   private:
