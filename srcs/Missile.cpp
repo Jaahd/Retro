@@ -39,7 +39,7 @@ bool Missile::check_target()
 
 void Missile::move()
 {
-    this->_y -= 1;
+    this->_y -= _speed;
 }
 
 int Missile::getX(void) const

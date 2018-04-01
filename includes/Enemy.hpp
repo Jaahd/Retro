@@ -23,6 +23,8 @@ class Enemy
     void setY(int y);
     int getWidth(void) const;
     void setWidth(int width);
+    int getSpeed(void) const;
+    void setSpeed(int speed);
     int getPv(void) const;
     void setPv(int pv);
     void print();

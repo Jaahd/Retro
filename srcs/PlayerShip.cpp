@@ -63,8 +63,10 @@ void PlayerShip::event(int key, int width)
 
 bool PlayerShip::moveLeft()
 {
-    if (this->_x > 0)
+    if (this->_x - _speed > 0)
         this->_x -= _speed;
+    else
+        this->_x = 1;
     return true;
 }
 
@@ -72,6 +74,8 @@ bool PlayerShip::moveRight(int width)
 {
     if (this->_x + _width + 1 < width)
         this->_x += _speed;
+    else
+        this->_x = width - _width - 1;
     return true;
 }
 

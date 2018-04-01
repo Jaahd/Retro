@@ -63,7 +63,8 @@ int MissilePack::push(Missile *m)
     if (_current)
         delete[] _current;
     _current = tmp;
-    _current[_count++] = m;
+   _current[_count] = m;
+   _count++;
     return _count;
 }
 
@@ -80,7 +81,10 @@ int MissilePack::deleteOne(int n)
         if (i != n)
             tmp[i - delta] = _current[i];
         else if (i == n)
-            delta = 1;
+        {
+			delete _current[i];
+			delta = 1;
+		}
     }
     if (_current)
         delete[] _current;

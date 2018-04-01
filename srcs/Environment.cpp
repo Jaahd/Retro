@@ -106,7 +106,7 @@ void Environment::removeObjects()
     for (int i = 0; i < nbMissiles; i++)
     {
         Missile *currMissile = this->_player.getMissiles().getOne(i);
-        if (currMissile->getY() < 0)
+        if (currMissile->getY() - currMissile->getSpeed() <= 0)
         {
             nbMissiles = this->_player.getMissiles().deleteOne(i);
             return;

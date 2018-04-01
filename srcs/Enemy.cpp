@@ -34,7 +34,7 @@ int Enemy::checkHit(MissilePack &missiles, PlayerShip &player)
     {
         if ((this->_x >= playerX && this->_x <= playerX + playerWidth) || (this->_x + _width >= playerX && this->_x + _width <= playerX + playerWidth))
         {
-            player.pvLost();
+            //player.pvLost();
             return 3;
         }
     }
@@ -92,6 +92,15 @@ int Enemy::getPv(void) const
 void Enemy::setPv(int pv)
 {
     this->_pv = pv;
+}
+
+int Enemy::getSpeed(void) const
+{
+    return this->_speed;
+}
+void Enemy::setSpeed(int speed)
+{
+    this->_speed = speed;
 }
 Enemy &Enemy::operator=(Enemy const &rhs)
 {

@@ -49,8 +49,7 @@ Enemy *EnemyPack::getOne(int n) const
 }
 void EnemyPack::randomChump(int width)
 {
-    int x = rand() % (width - 1);
-    int pop = rand() % 40;
+    int pop = rand() % 4;
 	std::string *tab= new std::string[4];
 	tab[0] = "V";
 	tab[1] = "\\/";
@@ -59,16 +58,8 @@ void EnemyPack::randomChump(int width)
 	tab[4] = "\\=V=/";
     if (pop == 1)
     {
-
-// \=V=/
-// \/
-// V
-// \V/
-// '\/'
-// /=A=\\
-
-
-        int size = (rand() % 5 )+ 1;
+    	int size = (rand() % 5 )+ 1;
+    	int x = rand() % (width - size - 2) + 2;
         Enemy *enemy = new Enemy(x, 0, size, 1, size, tab[size - 1]);
         this->push(enemy);
     }
@@ -78,8 +69,11 @@ void EnemyPack::event(int width, int height)
 {
 	for (int i = 0; i < _count; i++)
 	{
-		if(_current[i]->getY() > height)
+		if(_current[i]->getY() +  _current[i]->getSpeed() >= height - 1)
+		{
 			this->deleteOne(i);
+			break;
+		}
 	}
     this->randomChump(width);
 
@@ -104,7 +98,8 @@ int EnemyPack::push(Enemy *m)
 	if (_current)
 		delete[] _current;
 	_current = tmp;
-	_current[_count++] = m;
+	_current[_count] = m;
+	_count++;
 	return _count;
 }
 
@@ -120,8 +115,11 @@ int EnemyPack::deleteOne(int n)
 	{
 		if (i != n)
 			tmp[i - delta] = _current[i];
-		else if (i == n)
+		else
+		{
+			delete _current[i];
 			delta = 1;
+		}
 	}
 	if (_current)
 		delete[] _current;
