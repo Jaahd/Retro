@@ -13,7 +13,7 @@ Display::Display(Display const &src)
 
 Display::~Display()
 {
-	std::cout << "Display destroy\n";
+	//std::cout << "Display destroy\n";
 	return;
 }
 

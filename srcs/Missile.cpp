@@ -4,7 +4,7 @@
 
 Missile::Missile(void) : _speed(2), _damages(1)
 {
-    std::cout << "missile created" << std::endl;
+    //std::cout << "missile created" << std::endl;
 }
 
 Missile::Missile(int damages, int x, int y) : _x(x), _y(y), _speed(2), _damages(damages)
@@ -20,7 +20,7 @@ Missile::Missile(Missile const &src)
 
 Missile::~Missile()
 {
-    std::cout << "missile destroyed -- x:[" << this->_x << "] y[" << this->_y << std::endl;
+    // std::cout << "missile destroyed -- x:[" << this->_x << "] y[" << this->_y << std::endl;
 }
 
 void Missile::print(int toDisplay, int elapsed_time)
@@ -34,7 +34,7 @@ void Missile::print(int toDisplay, int elapsed_time)
 
 bool Missile::check_target()
 {
-    std::cout << "missile hit target" << std::endl;
+    //std::cout << "missile hit target" << std::endl;
     this->~Missile();
     return true;
 }

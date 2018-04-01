@@ -6,7 +6,7 @@ Environment::Environment(void)
     cbreak();
     keypad(stdscr, TRUE);
     timeout(0);
-    // nodelay(stdscr, 1);
+     nodelay(stdscr, 1);
     noecho();
     curs_set(0);
     getmaxyx(stdscr, this->_h, this->_w);
@@ -20,7 +20,7 @@ Environment::~Environment(void)
 {
 
     endwin();
-    std::cout << this->_h << " height and " << this->_w << " width\n";
+    //std::cout << this->_h << " height and " << this->_w << " width\n";
     return;
 }
 
