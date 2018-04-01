@@ -25,13 +25,6 @@ Missile **MissilePack::getValue(void) const
     return this->_current;
 }
 
-MissilePack &MissilePack::operator=(MissilePack const &rhs)
-{
-    this->_current = rhs.getValue();
-    this->_count = rhs.getCount();
-    return *this;
-}
-
 void MissilePack::printAll(void)
 {
     for (int i = 0; i < this->_count; i++)
@@ -91,4 +84,11 @@ int MissilePack::deleteOne(int n)
     _current = tmp;
     _count--;
     return _count;
+}
+
+MissilePack &MissilePack::operator=(MissilePack const &rhs)
+{
+    this->_current = rhs.getValue();
+    this->_count = rhs.getCount();
+    return *this;
 }

@@ -41,38 +41,47 @@ int Missile::getX(void) const
 {
     return this->_x;
 }
+
 void Missile::setX(int new_x)
 {
     this->_x = new_x;
 }
+
 int Missile::getY(void) const
 {
     return this->_y;
 }
+
 void Missile::setY(int new_y)
 {
     this->_y = new_y;
 }
+
 int Missile::getWidth(void) const
 {
     return this->_width;
 }
+
 void Missile::setWidth(int width)
 {
     this->_width = width;
 }
+
 int Missile::getSpeed(void) const
 {
     return this->_speed;
 }
+
 void Missile::setSpeed(int speed)
 {
     this->_speed = speed;
 }
+
 int Missile::getDamages(void) const
 {
     return this->_damages;
 }
+
 void Missile::setDamages(int damages)
 {
     this->_damages = damages;
@@ -80,9 +89,10 @@ void Missile::setDamages(int damages)
 
 Missile &Missile::operator=(Missile const &rhs)
 {
-
     this->_damages = rhs.getDamages();
     this->_speed = rhs.getSpeed();
+    this->_x = rhs.getX();
+    this->_y = rhs.getY();
 
     return *this;
 }

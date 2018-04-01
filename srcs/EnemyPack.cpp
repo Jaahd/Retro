@@ -23,43 +23,6 @@ EnemyPack::~EnemyPack()
     delete[] _current;
 }
 
-Enemy *EnemyPack::getOne(int n) const
-{
-    if (n < 0 || n > _count)
-        return NULL;
-    return _current[n];
-}
-void EnemyPack::randomChump(int width)
-{
-    int pop = rand() % 2; // 20
-    std::string tab[5];
-    tab[0] = "V";
-    tab[1] = "\\/";
-    tab[2] = "\\V/";
-    tab[3] = "'\\/'";
-    tab[4] = "\\=V=/";
-    if (pop == 1)
-    {
-        int size = ( rand() % 4) + 1;
-        int x = rand() % (width - size - 2) + 2;
-        Enemy *enemy = new Enemy(x, 0, size, 1, size, tab[size - 1]);
-        this->push(enemy);
-    }
-}
-
-void EnemyPack::event(int width, int height)
-{
-    for (int i = 0; i < _count; i++)
-    {
-        if (_current[i]->getY() + _current[i]->getSpeed() >= height - 1)
-        {
-            this->deleteOne(i);
-            break;
-        }
-    }
-    this->randomChump(width);
-}
-
 int EnemyPack::push(Enemy *m)
 {
     Enemy **tmp;
@@ -76,6 +39,13 @@ int EnemyPack::push(Enemy *m)
     _current[_count] = m;
     _count++;
     return _count;
+}
+
+Enemy *EnemyPack::getOne(int n) const
+{
+    if (n < 0 || n > _count)
+        return NULL;
+    return _current[n];
 }
 
 int EnemyPack::deleteOne(int n)
@@ -103,18 +73,41 @@ int EnemyPack::deleteOne(int n)
     return _count;
 }
 
+void EnemyPack::event(int width, int height)
+{
+    for (int i = 0; i < _count; i++)
+    {
+        if (_current[i]->getY() + _current[i]->getSpeed() >= height - 1)
+        {
+            this->deleteOne(i);
+            break;
+        }
+    }
+    this->randomChump(width);
+}
+
 void EnemyPack::printAll(void)
 {
     for (int i = 0; i < this->_count; i++)
         this->_current[i]->print();
 }
 
-EnemyPack &EnemyPack::operator=(EnemyPack const &rhs)
+void EnemyPack::randomChump(int width)
 {
-
-    this->_current = rhs.getCurrent();
-    this->_count = rhs.getCount();
-    return *this;
+    int pop = rand() % 20;
+    std::string tab[5];
+    tab[0] = "V";
+    tab[1] = "\\/";
+    tab[2] = "\\V/";
+    tab[3] = "'\\/'";
+    tab[4] = "\\=V=/";
+    if (pop == 1)
+    {
+        int size = ( rand() % 4) + 1;
+        int x = rand() % (width - size - 2) + 2;
+        Enemy *enemy = new Enemy(x, 0, size, 1, size, tab[size - 1]);
+        this->push(enemy);
+    }
 }
 
 Enemy **EnemyPack::getCurrent(void) const
@@ -125,4 +118,12 @@ Enemy **EnemyPack::getCurrent(void) const
 int EnemyPack::getCount(void) const
 {
     return this->_count;
+}
+
+EnemyPack &EnemyPack::operator=(EnemyPack const &rhs)
+{
+
+    this->_current = rhs.getCurrent();
+    this->_count = rhs.getCount();
+    return *this;
 }

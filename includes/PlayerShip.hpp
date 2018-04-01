@@ -16,14 +16,12 @@ public:
   PlayerShip(PlayerShip const &src);
   ~PlayerShip(void);
 
-  // bool moveForward();
   void event(int key, int width);
   bool moveLeft();
   bool moveRight(int width);
   Missile &launchMissile();
   void print(std::string toDisplay) const;
   int pvLost();
-  // void display(Environement const &env);
 
   PlayerShip &operator=(PlayerShip const &rhs);
 

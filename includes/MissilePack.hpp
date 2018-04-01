@@ -11,14 +11,14 @@ class MissilePack
 	MissilePack(MissilePack const &src);
 	~MissilePack(void);
 
-	MissilePack &operator=(MissilePack const &rhs);
-
 	Missile **getValue(void) const;
 	virtual int push(Missile *);
 	virtual Missile *getOne(int) const;
 	virtual int deleteOne(int n);
 	void printAll(void);
 	virtual int getCount(void) const;
+
+	MissilePack &operator=(MissilePack const &rhs);
 
   private:
 	Missile **_current;

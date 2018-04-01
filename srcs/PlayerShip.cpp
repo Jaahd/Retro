@@ -188,8 +188,6 @@ PlayerShip &PlayerShip::operator=(PlayerShip const &rhs)
     this->_atk = rhs.getAtk();
     this->_speed = rhs.getSpeed();
     this->_score = rhs.getScore();
-    // this->_missiles = rhs.getMissiles();
-    // this->_display = rhs.getDisplay();
 
     return *this;
 }

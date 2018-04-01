@@ -11,11 +11,9 @@ class Missile
     Missile(Missile const &src);
     ~Missile(void);
 
-    bool check_target(); // TODO
-    void move();
     void print();
-
-    Missile &operator=(Missile const &rhs);
+    bool check_target();
+    void move();
 
     int getX(void) const;
     void setX(int new_x);
@@ -27,6 +25,8 @@ class Missile
     void setSpeed(int speed);
     int getDamages(void) const;
     void setDamages(int damages);
+
+    Missile &operator=(Missile const &rhs);
 
   private:
     int _x;

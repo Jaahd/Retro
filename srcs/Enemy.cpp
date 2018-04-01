@@ -39,7 +39,7 @@ int Enemy::checkHit(MissilePack &missiles, PlayerShip &player)
     {
         if ((this->_x >= playerX && this->_x <= playerX + playerWidth) || (this->_x + _width >= playerX && this->_x + _width <= playerX + playerWidth))
         {
-          //  player.pvLost();
+            player.pvLost();
             return 3;
         }
     }
@@ -105,6 +105,7 @@ Enemy &Enemy::operator=(Enemy const &rhs)
     this->_x = rhs.getX();
     this->_y = rhs.getY();
     this->_width = rhs.getWidth();
+    this->_speed = rhs.getSpeed();
     this->_pv = rhs.getPv();
 
     return *this;

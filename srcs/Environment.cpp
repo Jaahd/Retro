@@ -1,5 +1,10 @@
 #include <unistd.h>
 #include "Environment.hpp"
+#include "EnemyPack.hpp"
+#include "Enemy.hpp"
+#include "MissilePack.hpp"
+#include "Missile.hpp"
+#include <ncurses.h>
 
 Environment::Environment(void)
 {
@@ -7,7 +12,7 @@ Environment::Environment(void)
     cbreak();
 
     keypad(stdscr, TRUE);
-    //timeout(0);
+
     nodelay(stdscr, 1);
     noecho();
     curs_set(0);
@@ -17,7 +22,7 @@ Environment::Environment(void)
         _w = 80;
         resizeterm(_h, _w);
     }
-    //start_color();
+
     this->_player.setY(this->_h - 5);
     this->_active = true;
     return;
@@ -27,7 +32,7 @@ Environment::~Environment(void)
 {
 
     endwin();
-    //std::cout << this->_h << " height and " << this->_w << " width\n";
+
     return;
 }
 
@@ -35,21 +40,6 @@ Environment::Environment(Environment const &src)
 {
     *this = src;
     return;
-}
-
-unsigned int Environment::getW(void) const
-{
-    return this->_w;
-}
-
-unsigned int Environment::getH(void) const
-{
-    return this->_h;
-}
-
-bool Environment::isActive(void) const
-{
-    return (this->_active);
 }
 
 void Environment::handleKey(int key)
@@ -66,6 +56,7 @@ void Environment::handleKey(int key)
 
     this->_player.event(key, this->_w);
 }
+
 void Environment::printAll()
 {
     if (this->_player.getPv() == 0)
@@ -95,6 +86,7 @@ void Environment::printAll()
     refresh();
     return;
 }
+
 void Environment::print(int x, int y, int toDisplay) const
 {
     attron(COLOR_PAIR(1));
@@ -104,19 +96,6 @@ void Environment::print(int x, int y, int toDisplay) const
     refresh();
 
     return;
-}
-void Environment::removeObjects()
-{
-    int nbMissiles = this->_player.getMissiles().getCount();
-    for (int i = 0; i < nbMissiles; i++)
-    {
-        Missile *currMissile = this->_player.getMissiles().getOne(i);
-        if (currMissile->getY() - currMissile->getSpeed() <= 0)
-        {
-            nbMissiles = this->_player.getMissiles().deleteOne(i);
-            return;
-        }
-    }
 }
 
 int Environment::checkCollisions(void)
@@ -136,9 +115,39 @@ int Environment::checkCollisions(void)
     }
     return 0;
 }
+
+void Environment::removeObjects()
+{
+    int nbMissiles = this->_player.getMissiles().getCount();
+    for (int i = 0; i < nbMissiles; i++)
+    {
+        Missile *currMissile = this->_player.getMissiles().getOne(i);
+        if (currMissile->getY() - currMissile->getSpeed() <= 0)
+        {
+            nbMissiles = this->_player.getMissiles().deleteOne(i);
+            return;
+        }
+    }
+}
+
+bool Environment::isActive(void) const
+{
+    return (this->_active);
+}
+
 PlayerShip Environment::getPlayer(void) const
 {
     return this->_player;
+}
+
+unsigned int Environment::getW(void) const
+{
+    return this->_w;
+}
+
+unsigned int Environment::getH(void) const
+{
+    return this->_h;
 }
 
 Environment &Environment::operator=(Environment const &rhs)
@@ -147,5 +156,6 @@ Environment &Environment::operator=(Environment const &rhs)
     this->_w = rhs.getW();
     this->_active = rhs.isActive();
     this->_player = rhs.getPlayer();
+
     return *this;
 }
