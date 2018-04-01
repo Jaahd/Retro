@@ -7,12 +7,12 @@ Environment::Environment(void)
     cbreak();
     keypad(stdscr, TRUE);
     timeout(0);
-     nodelay(stdscr, 1);
+    nodelay(stdscr, 1);
     noecho();
     curs_set(0);
     getmaxyx(stdscr, this->_h, this->_w);
     //start_color();
-    this->_player.setY(this->_h - 2);
+    this->_player.setY(this->_h - 5);
     this->_active = true;
     return;
 }
@@ -63,9 +63,18 @@ void Environment::handleKey(int key)
 }
 void Environment::printAll()
 {
+    if (this->_player.getPv() == 0)
+    {
+        clear();
+        mvprintw(20, 20, "game over");
+        refresh();
+        sleep(5);
+        _active = false;
+    }
     this->_enemies.event(this->_w);
     clear();
-    box(stdscr, 0, 0);
+    this->checkCollisions();
+    //box(stdscr, 0, 0);
     // this->checkCollisions();
     this->_player.print('A');
     this->_player.getMissiles().printAll();
@@ -96,7 +105,6 @@ void Environment::removeObjects()
             return;
         }
     }
-
 }
 
 int Environment::checkCollisions(void)
@@ -105,17 +113,17 @@ int Environment::checkCollisions(void)
     MissilePack &missiles = _player.getMissiles();
     int nbEnemies = this->_enemies.getCount();
     mvprintw(6, 2, "hp {%d}", _player.getPv());
-	for (int i = 0; i < nbEnemies; i++)
-	{
+    for (int i = 0; i < nbEnemies; i++)
+    {
         int hit = this->_enemies.getOne(i)->checkHit(missiles, _player);
-		if (hit)
+        if (hit)
         {
             this->_enemies.deleteOne(i);
             if (hit == DEAD)
                 return DEAD;
             return 1;
         }
-	}
+    }
     return 0;
 }
 PlayerShip &Environment::getPlayer(void)

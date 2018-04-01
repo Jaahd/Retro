@@ -17,16 +17,12 @@ int main(void)
     while (env.isActive())
     {
         printw("pv {%d}", env.getPlayer().getPv()); /* Print Hello World    */
-        if (env.checkCollisions() == DEAD)
-        {
-            env.newGame();
-            break;
-        }
+        env.checkCollisions();
         env.handleKey(getch());
         env.printAll();
         env.removeObjects();
         usleep(50000);
     }
-    
+
     return 0;
 }
