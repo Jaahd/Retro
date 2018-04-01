@@ -21,6 +21,7 @@ class Environment
     void print(int x, int y, int toDisplay) const;
     void checkCollisions();
     void printAll(int elapsed_time);
+    void removeObjects();
     PlayerShip &getPlayer();
 
   private:

@@ -27,11 +27,11 @@ Missile::~Missile()
 void    Missile::print(int toDisplay, int elapsed_time)
 {
     this->_display.print(this->_x, this->_y, COLOR_WHITE, toDisplay);
+    // mvprintw(5, 1, "missile x(%d),y(%d)",this->_x, this->_y);
     if (elapsed_time % 10 == 0)
     {
         this->_y -= this->_speed;
         this->_display.print(this->_x, this->_y, COLOR_WHITE, toDisplay);
-
     }
     return;
 }

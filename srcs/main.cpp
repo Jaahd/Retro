@@ -27,6 +27,7 @@ int main(void)
         mvprintw(2, 2, "tempo %f", ((float)tempo));
         // if (((float)tempo / CLOCKS_PER_SEC) * FPS > 1)
         // {
+        env.removeObjects();
         env.handleKey(getch(), tempo);
         env.printAll(tempo);
         lastTime = current;
