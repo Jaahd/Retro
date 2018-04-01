@@ -22,7 +22,7 @@ public:
   bool moveLeft();
   bool moveRight(int width);
   Missile &launchMissile();
-  void print(int toDisplay) const;
+  void print(std::string toDisplay) const;
   int pvLost();
   // void display(Environement const &env);
 

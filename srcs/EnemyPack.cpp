@@ -1,4 +1,5 @@
 #include <ctime>
+#include <sstream>
 #include "EnemyPack.hpp"
 
 EnemyPack::EnemyPack(void) : _current(0x0), _count(0)
@@ -50,9 +51,25 @@ void EnemyPack::randomChump(int width)
 {
     int x = rand() % (width - 1);
     int pop = rand() % 40;
+	std::string *tab= new std::string[4];
+	tab[0] = "V";
+	tab[1] = "\\/";
+	tab[2] = "\\V/";
+	tab[3] = "'\\/'";
+	tab[4] = "\\=V=/";
     if (pop == 1)
     {
-        Enemy *enemy = new Enemy(x, 0, 1, 1, 'O');
+
+// \=V=/
+// \/
+// V
+// \V/
+// '\/'
+// /=A=\\
+
+
+        int size = (rand() % 5 )+ 1;
+        Enemy *enemy = new Enemy(x, 0, size, 1, size, tab[size - 1]);
         this->push(enemy);
     }
 }

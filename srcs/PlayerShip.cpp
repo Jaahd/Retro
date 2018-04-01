@@ -1,13 +1,14 @@
 #include <ncurses.h>
+#include <iostream>
 #include "PlayerShip.hpp"
 #include "PlayerShip.hpp"
 
-PlayerShip::PlayerShip(void) : _name("ship"), _x(10), _width(1), _pv(5), _lvl(1), _armor(0), _atk(1), _speed(1), _score(0)
+PlayerShip::PlayerShip(void) : _name("ship"), _x(10), _width(5), _pv(5), _lvl(1), _armor(0), _atk(1), _speed(1), _score(0)
 {
     std::cout << "player ship created" << std::endl;
 }
 
-PlayerShip::PlayerShip(std::string const &name) : _name(name), _x(10), _width(1), _pv(5), _lvl(1), _armor(0), _atk(1), _speed(1), _score(0)
+PlayerShip::PlayerShip(std::string const &name) : _name(name), _x(10), _width(5), _pv(5), _lvl(1), _armor(0), _atk(1), _speed(1), _score(0)
 {
     std::cout << "player ship created" << std::endl;
 }
@@ -23,7 +24,7 @@ PlayerShip::~PlayerShip()
     std::cout << "player ship destroyed -- x:[" << this->_x << "] y[" << this->_y << std::endl;
 }
 
-void PlayerShip::print(int toDisplay) const
+void PlayerShip::print(std::string toDisplay) const
 {
     _display.print(_x, _y, COLOR_WHITE, toDisplay);
     return;
@@ -76,7 +77,7 @@ bool PlayerShip::moveRight(int width)
 
 Missile &PlayerShip::launchMissile()
 {
-    Missile *msl = new Missile(this->_atk, this->_x, this->_y);
+    Missile *msl = new Missile(this->_atk, this->_x + (this->_width / 2), this->_y);
     return *msl;
 }
 
@@ -119,7 +120,7 @@ int PlayerShip::getPv(void) const
 }
 void PlayerShip::setPv(int pv)
 {
-    this->_pv = pv;
+    this->_pv = pv < 0 ? 0 : pv;
 }
 int PlayerShip::getLvl(void) const
 {
