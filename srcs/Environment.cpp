@@ -10,7 +10,7 @@ Environment::Environment(void)
     noecho();
     curs_set(0);
     getmaxyx(stdscr, this->_h, this->_w);
-    start_color();
+    //start_color();
     this->_player.setY(this->_h - 2);
     this->_active = true;
     return;
@@ -45,7 +45,7 @@ bool Environment::isActive(void) const
     return (this->_active);
 }
 
-void Environment::handleKey(int key, int elapsed_time)
+void Environment::handleKey(int key)
 {
     if (key == ERR)
         refresh();
@@ -60,20 +60,15 @@ void Environment::handleKey(int key, int elapsed_time)
     this->_player.event(key, this->_w);
     flushinp();
 }
-void Environment::printAll(int elapsed_time)
+void Environment::printAll()
 {
+    this->_enemies.event(this->_w);
     clear();
-    this->_player.print('A', elapsed_time);
-
-    int nbMissiles = _player.getMissiles().getCount();
-    for (int i = 0; i < nbMissiles; i++)
-    {
-        Missile *curr_missile = this->_player.getMissiles().getOne(i);
-        curr_missile->print('.', elapsed_time);
-        // if (curr_missile->getY() < 0)
-        //     this->_player.getMissiles().deleteOne(i);
-    }
     box(stdscr, 0, 0);
+    // this->checkCollisions();
+    this->_player.print('A');
+    this->_player.getMissiles().printAll();
+    this->_enemies.printAll();
     refresh();
     return;
 }
@@ -100,14 +95,24 @@ void Environment::removeObjects()
             return;
         }
     }
+
 }
-// void Environment::checkCollisions(EnemyPack &enemies, MissilePack &missiles, PlayerShip &player);
-// {
-// 	for (int i = 0; i < enemies.getCount(); i++)
-// 	{
-// 		enemies.getOne().checkHit(missiles, player);
-// 	}
-// }
+
+void Environment::checkCollisions(void)
+{
+    //mvprintw(5, 2, "check coll");
+    MissilePack &missiles = _player.getMissiles();
+    int nbEnemies = this->_enemies.getCount();
+  //  mvprintw(6, 2, "ng Enemies {%d}", nbEnemies);
+	for (int i = 0; i < nbEnemies; i++)
+	{
+		if (this->_enemies.getOne(i)->checkHit(missiles, _player))
+        {
+            this->_enemies.deleteOne(i);
+            return ;
+        }
+	}
+}
 PlayerShip &Environment::getPlayer(void)
 {
     return this->_player;

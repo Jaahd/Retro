@@ -17,7 +17,7 @@ class MissilePack
 	virtual int push(Missile *);
 	virtual Missile *getOne(int) const;
 	virtual int deleteOne(int n);
-	void moveAll(void);
+	void printAll(void);
 	virtual int getCount(void) const;
 
   private:

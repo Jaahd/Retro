@@ -23,9 +23,8 @@ PlayerShip::~PlayerShip()
     std::cout << "player ship destroyed -- x:[" << this->_x << "] y[" << this->_y << std::endl;
 }
 
-void PlayerShip::print(int toDisplay, int elapsed_time) const
+void PlayerShip::print(int toDisplay) const
 {
-    (void)elapsed_time;
     _display.print(_x, _y, COLOR_WHITE, toDisplay);
     return;
 }
@@ -46,10 +45,7 @@ void PlayerShip::event(int key, int width)
     }
     case ' ':
     {
-       // mvprintw(8, 2, "case space");
-
         this->_missiles.push(&(this->launchMissile()));
-        //mvprintw(9, 2, "nb missiles %d", this->_missiles.getCount());
         break;
     }
     default:
@@ -59,17 +55,15 @@ void PlayerShip::event(int key, int width)
 
 bool PlayerShip::moveLeft()
 {
-    //mvprintw(10, 1, "move lft");
-    if (this->_x > 1)
-        this->_x -= _speed;
+    if (this->_x > 0)
+        this->_x--;
     return true;
 }
 
 bool PlayerShip::moveRight(int width)
 {
-    //mvprintw(10, 1, "move right");
-    if (this->_x < width - 2)
-        this->_x += _speed;
+    if (this->_x < width)
+        this->_x++;
     return true;
 }
 
@@ -156,17 +150,23 @@ MissilePack & PlayerShip::getMissiles(void)
 {
     return this->_missiles;
 }
-
+Display & PlayerShip::getDisplay(void)
+{
+    return this->_display;
+}
 PlayerShip &PlayerShip::operator=(PlayerShip const &rhs)
 {
     this->_name = rhs.getName();
     this->_x = rhs.getX();
     this->_y = rhs.getY();
+    this->_width = rhs.getWidth();
     this->_pv = rhs.getPv();
     this->_lvl = rhs.getLvl();
     this->_armor = rhs.getArmor();
     this->_atk = rhs.getAtk();
     this->_speed = rhs.getSpeed();
+    // this->_missiles = rhs.getMissiles();
+    // this->_display = rhs.getDisplay();
 
     return *this;
 }

@@ -1,7 +1,9 @@
+#include <ctime>
 #include "EnemyPack.hpp"
 
 EnemyPack::EnemyPack(void) : _current(0x0), _count(0)
 {
+    srand(time(NULL));
 }
 
 EnemyPack::EnemyPack(EnemyPack const &src)
@@ -43,6 +45,39 @@ Enemy *EnemyPack::getOne(int n) const
 	if (n < 0 || n > _count)
 		return NULL;
 	return _current[n];
+}
+void EnemyPack::randomChump(int width)
+{
+    int x = rand() % (width - 1);
+    int pop = rand() % 40;
+    if (pop == 1)
+    {
+        Enemy *enemy = new Enemy(x, 0, 1, 1, 'O');
+        this->push(enemy);
+    }
+}
+void EnemyPack::checkCollisions(PlayerShip &player)
+{
+    // MissilePack missiles = player.getMissiles();
+    // for (int i = 0; i < this->_count; i++)
+	// {
+    //     if (this->_current[i]->checkHit(missiles, player) != false)
+	// 	{
+	// 		exit(0);
+	// 		this->deleteOne(i);
+	// 	}
+	// }
+}
+void EnemyPack::event(int width)
+{
+    this->randomChump(width);
+
+}
+void EnemyPack::printAll(void)
+{
+    //mvprintw(2, 2, "enemies %d", this->_count);
+    for (int i = 0; i < this->_count; i++)
+        this->_current[i]->print();
 }
 
 int EnemyPack::push(Enemy *m)

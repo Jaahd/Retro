@@ -13,6 +13,7 @@ class Display
 
 
 	//Display &operator=(Display const &rhs);
+    private:
 };
 
 #endif

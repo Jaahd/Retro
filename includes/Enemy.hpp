@@ -8,7 +8,7 @@ class Enemy
 {
   public:
     Enemy(void);
-    Enemy(int x, int y, int width);
+    Enemy(int x, int y, int width, int speed, int toDisplay);
     Enemy(Enemy const &src);
     ~Enemy(void);
 
@@ -22,11 +22,15 @@ class Enemy
     void setY(int y);
     int getWidth(void) const;
     void setWidth(int width);
+    void print();
 
   private:
     int _x;
     int _y;
     int _width;
+    int _speed;
+    int _toDisplay;
+    Display _display;
 };
 
 #endif //ENEMY_HPP

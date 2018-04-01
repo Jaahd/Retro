@@ -13,14 +13,12 @@ int main(void)
 {
     Environment env;
 
-    env.handleKey(0, 0);
-    int tempo = 0;
+    env.handleKey(0);
     while (env.isActive())
     {
-       // tempo = ((clock())) % 1000;
-        //mvprintw(2, 2, "tempo %d", tempo);
-        env.handleKey(getch(), tempo);
-        env.printAll(tempo);
+        env.checkCollisions();
+        env.handleKey(getch());
+        env.printAll();
         env.removeObjects();
         usleep(50000);
     }
