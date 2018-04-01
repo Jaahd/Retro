@@ -12,11 +12,9 @@
 int main(void)
 {
     float elapsed_time = 6;
-    //PlayerShip toto("toto");
-    //Missile &pouet = toto.launchMissile();
+
     Environment env;
-    //using namespace std;
-    //double lastTime = clock();
+
     env.handleKey(0, 0);
     int tempo = 0;
     while (env.isActive())
