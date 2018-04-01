@@ -5,7 +5,7 @@ Environment::Environment(void)
     initscr();
     cbreak();
     keypad(stdscr, TRUE);
-    timeout(50);
+    timeout(1);
     // nodelay(stdscr, 1);
     noecho();
     curs_set(0);
@@ -104,7 +104,7 @@ void Environment::removeObjects()
 // 		enemies.getOne().checkHit(missiles, player);
 // 	}
 // }
-PlayerShip & Environment::getPlayer(void)
+PlayerShip &Environment::getPlayer(void)
 {
     return this->_player;
 }
