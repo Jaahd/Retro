@@ -32,7 +32,7 @@ all: $(OPATH) $(NAME)
 
 $(NAME): $(OFILES)
 	@echo "Creating OBJ files"
-	@echo "Building $@"
+	@echo "Building OBJ files"
 	$(CC) $(CFLAGS) $(LFLAGS) -o $@ $^
 	@echo "\033[36mAll is done!\033[0m"
 
