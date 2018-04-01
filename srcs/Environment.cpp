@@ -67,7 +67,10 @@ void Environment::printAll(int elapsed_time)
     int nbMissiles = _player.getMissiles().getCount();
     for (int i = 0; i < nbMissiles; i++)
     {
-        _player.getMissiles().getOne(i)->print('.', elapsed_time);
+        Missile *curr_missile = this->_player.getMissiles().getOne(i);
+        curr_missile->print('.', elapsed_time);
+        // if (curr_missile->getY() < 0)
+        //     this->_player.getMissiles().deleteOne(i);
     }
 
     refresh();
@@ -84,7 +87,19 @@ void Environment::print(int x, int y, int toDisplay) const
 
     return;
 }
-
+void Environment::removeObjects()
+{
+    int nbMissiles = this->_player.getMissiles().getCount();
+    for (int i = 0; i < nbMissiles; i++)
+    {
+        Missile *currMissile = this->_player.getMissiles().getOne(i);
+        if (currMissile->getY() < 0)
+        {
+            nbMissiles = this->_player.getMissiles().deleteOne(i);
+            return;
+        }
+    }
+}
 // void Environment::checkCollisions(EnemyPack &enemies, MissilePack &missiles, PlayerShip &player);
 // {
 // 	for (int i = 0; i < enemies.getCount(); i++)

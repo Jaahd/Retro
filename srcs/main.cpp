@@ -23,6 +23,7 @@ int main(void)
         mvprintw(2, 2, "tempo %d", tempo);
         env.handleKey(getch(), tempo);
         env.printAll(tempo);
+        env.removeObjects();
     }
 
     return 0;

@@ -80,6 +80,6 @@ int EnemyPack::deleteOne(int n)
 	if (_current)
 		delete[] _current;
 	_current = tmp;
-	_current--;
+	_count--;
 	return _count;
 }

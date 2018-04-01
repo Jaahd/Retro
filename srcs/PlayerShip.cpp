@@ -50,7 +50,6 @@ void PlayerShip::event(int key, int width)
 
         this->_missiles.push(&(this->launchMissile()));
         mvprintw(9, 2, "nb missiles %d", this->_missiles.getCount());
-
         break;
     }
     default:
