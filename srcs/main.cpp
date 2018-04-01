@@ -11,7 +11,7 @@
 
 int main(void)
 {
-    float elapsed_time = 6;
+
     //PlayerShip toto("toto");
     //Missile &pouet = toto.launchMissile();
     Environment env;
@@ -22,18 +22,15 @@ int main(void)
     {
         double current = clock();
         double tempo = current - lastTime;
-        mvprintw(1,1, "elapsed time %f", ((float)tempo) / CLOCKS_PER_SEC);
-        mvprintw(2,2, "tempo %f", ((float)tempo));
+        mvprintw(1, 1, "elapsed time %f", ((float)tempo) / CLOCKS_PER_SEC);
         tempo += clock();
-        if (((float)tempo / CLOCKS_PER_SEC) * FPS > 1)
-        {
-        // float elapsed_time = ((float)t) / CLOCKS_PER_SEC;
+        mvprintw(2, 2, "tempo %f", ((float)tempo));
+        // if (((float)tempo / CLOCKS_PER_SEC) * FPS > 1)
+        // {
         env.handleKey(getch(), tempo);
         env.printAll(tempo);
         lastTime = current;
-        // tempo = 0;
-        }
-        
+        // }
     }
 
     return 0;

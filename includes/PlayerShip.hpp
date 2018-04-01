@@ -43,6 +43,7 @@ public:
   void setAtk(int Atk);
   int getSpeed(void) const;
   void setSpeed(int lvl);
+  MissilePack &getMissiles();
 
 
 private:

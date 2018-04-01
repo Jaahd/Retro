@@ -23,7 +23,7 @@ PlayerShip::~PlayerShip()
     std::cout << "player ship destroyed -- x:[" << this->_x << "] y[" << this->_y << std::endl;
 }
 
-void    PlayerShip::print(int toDisplay, int elapsed_time) const
+void PlayerShip::print(int toDisplay, int elapsed_time) const
 {
     (void)elapsed_time;
     _display.print(_x, _y, COLOR_WHITE, toDisplay);
@@ -46,7 +46,11 @@ void PlayerShip::event(int key, int width)
     }
     case ' ':
     {
+        mvprintw(8, 2, "case space");
+
         this->_missiles.push(&(this->launchMissile()));
+        mvprintw(9, 2, "nb missiles %d", this->_missiles.getCount());
+
         break;
     }
     default:
@@ -54,12 +58,9 @@ void PlayerShip::event(int key, int width)
     }
 }
 
-// bool PlayerShip::moveForward()
-// {
-//     return true;
-// }
 bool PlayerShip::moveLeft()
 {
+    mvprintw(10, 1, "move lft");
     if (this->_x > 0)
         this->_x--;
     return true;
@@ -67,6 +68,7 @@ bool PlayerShip::moveLeft()
 
 bool PlayerShip::moveRight(int width)
 {
+    mvprintw(10, 1, "move right");
     if (this->_x < width)
         this->_x++;
     return true;
@@ -74,7 +76,6 @@ bool PlayerShip::moveRight(int width)
 
 Missile &PlayerShip::launchMissile()
 {
-    std::cout << "launch_missile" << std::endl;
     Missile *msl = new Missile(this->_atk, this->_x, this->_y);
     return *msl;
 }
@@ -151,6 +152,10 @@ int PlayerShip::getSpeed(void) const
 void PlayerShip::setSpeed(int speed)
 {
     this->_speed = speed;
+}
+MissilePack & PlayerShip::getMissiles(void)
+{
+    return this->_missiles;
 }
 
 PlayerShip &PlayerShip::operator=(PlayerShip const &rhs)

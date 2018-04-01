@@ -10,12 +10,12 @@ Missile::Missile(void) : _speed(1), _damages(1)
 
 Missile::Missile(int damages, int x, int y) : _x(x), _y(y), _speed(1), _damages(damages)
 {
-    std::cout << "missile created" << std::endl;
+    // std::cout << "missile created" << std::endl;
 }
 
 Missile::Missile(Missile const &src)
 {
-    std::cout << "missile created" << std::endl;
+    // std::cout << "missile created" << std::endl;
     *this = src;
 }
 
