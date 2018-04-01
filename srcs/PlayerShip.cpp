@@ -2,12 +2,12 @@
 #include "PlayerShip.hpp"
 #include "PlayerShip.hpp"
 
-PlayerShip::PlayerShip(void) : _name("ship"), _x(0), _pv(20), _lvl(1), _armor(0), _atk(1), _speed(1)
+PlayerShip::PlayerShip(void) : _name("ship"), _x(10), _pv(20), _lvl(1), _armor(0), _atk(1), _speed(1)
 {
     std::cout << "player ship created" << std::endl;
 }
 
-PlayerShip::PlayerShip(std::string const &name) : _name(name), _x(0), _pv(20), _lvl(1), _armor(0), _atk(1), _speed(1)
+PlayerShip::PlayerShip(std::string const &name) : _name(name), _x(10), _pv(20), _lvl(1), _armor(0), _atk(1), _speed(1)
 {
     std::cout << "player ship created" << std::endl;
 }
@@ -46,10 +46,10 @@ void PlayerShip::event(int key, int width)
     }
     case ' ':
     {
-        mvprintw(8, 2, "case space");
+       // mvprintw(8, 2, "case space");
 
         this->_missiles.push(&(this->launchMissile()));
-        mvprintw(9, 2, "nb missiles %d", this->_missiles.getCount());
+        //mvprintw(9, 2, "nb missiles %d", this->_missiles.getCount());
         break;
     }
     default:
@@ -59,17 +59,17 @@ void PlayerShip::event(int key, int width)
 
 bool PlayerShip::moveLeft()
 {
-    mvprintw(10, 1, "move lft");
-    if (this->_x > 0)
-        this->_x--;
+    //mvprintw(10, 1, "move lft");
+    if (this->_x > 1)
+        this->_x -= _speed;
     return true;
 }
 
 bool PlayerShip::moveRight(int width)
 {
-    mvprintw(10, 1, "move right");
-    if (this->_x < width)
-        this->_x++;
+    //mvprintw(10, 1, "move right");
+    if (this->_x < width - 2)
+        this->_x += _speed;
     return true;
 }
 

@@ -59,7 +59,6 @@ Missile *MissilePack::getOne(int n) const
 
 int MissilePack::push(Missile *m)
 {
-    std::cout <<"add " << _count + 1<<std::endl;
     Missile **tmp;
     if (!m)
         return _count;
@@ -94,6 +93,5 @@ int MissilePack::deleteOne(int n)
         delete[] _current;
     _current = tmp;
     _count--;
-    std::cout <<"remove " << _count <<std::endl;
     return _count;
 }

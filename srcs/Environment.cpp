@@ -5,12 +5,12 @@ Environment::Environment(void)
     initscr();
     cbreak();
     keypad(stdscr, TRUE);
-    timeout(1);
+    timeout(0);
     // nodelay(stdscr, 1);
     noecho();
     curs_set(0);
     getmaxyx(stdscr, this->_h, this->_w);
-    //start_color();
+    start_color();
     this->_player.setY(this->_h - 2);
     this->_active = true;
     return;
@@ -58,6 +58,7 @@ void Environment::handleKey(int key, int elapsed_time)
     }
 
     this->_player.event(key, this->_w);
+    flushinp();
 }
 void Environment::printAll(int elapsed_time)
 {
@@ -72,7 +73,7 @@ void Environment::printAll(int elapsed_time)
         // if (curr_missile->getY() < 0)
         //     this->_player.getMissiles().deleteOne(i);
     }
-
+    box(stdscr, 0, 0);
     refresh();
     return;
 }
