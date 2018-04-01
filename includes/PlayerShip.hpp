@@ -7,6 +7,8 @@
 #include "MissilePack.hpp"
 #include "Display.hpp"
 
+#define DEAD -2
+
 class PlayerShip : public IGameEntity
 {
 public:
@@ -21,6 +23,7 @@ public:
   bool moveRight(int width);
   Missile &launchMissile();
   void print(int toDisplay) const;
+  int pvLost();
   // void display(Environement const &env);
 
   PlayerShip &operator=(PlayerShip const &rhs);

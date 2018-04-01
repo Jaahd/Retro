@@ -12,7 +12,7 @@ class Enemy
     Enemy(Enemy const &src);
     ~Enemy(void);
 
-    bool checkHit(MissilePack &missiles, PlayerShip &palyer);
+    int checkHit(MissilePack &missiles, PlayerShip &palyer);
 
     Enemy &operator=(Enemy const &rhs);
 

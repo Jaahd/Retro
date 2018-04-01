@@ -19,10 +19,11 @@ class Environment
     bool isActive(void) const;
     void handleKey(int key);
     void print(int x, int y, int toDisplay) const;
-    void checkCollisions(PlayerShip &player);
+    int checkCollisions();
     void printAll();
-    void removeObjects(PlayerShip &player);
+    void removeObjects();
     PlayerShip &getPlayer();
+    bool newGame();
 
   private:
     unsigned int _w;

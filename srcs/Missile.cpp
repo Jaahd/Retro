@@ -2,12 +2,12 @@
 #include "Missile.hpp"
 #include "Missile.hpp"
 
-Missile::Missile(void) : _speed(2), _damages(1)
+Missile::Missile(void) : _speed(1), _damages(1), _toDisplay('.')
 {
-    std::cout << "missile created" << std::endl;
+    //std::cout << "missile created" << std::endl;
 }
 
-Missile::Missile(int damages, int x, int y) : _x(x), _y(y), _speed(2), _damages(damages)
+Missile::Missile(int damages, int x, int y) : _x(x), _y(y), _speed(1), _damages(damages), _toDisplay('.')
 {
     // std::cout << "missile created" << std::endl;
 }
@@ -20,7 +20,7 @@ Missile::Missile(Missile const &src)
 
 Missile::~Missile()
 {
-    std::cout << "missile destroyed -- x:[" << this->_x << "] y[" << this->_y << std::endl;
+    // std::cout << "missile destroyed -- x:[" << this->_x << "] y[" << this->_y << std::endl;
 }
 
 void Missile::print()
@@ -32,7 +32,7 @@ void Missile::print()
 
 bool Missile::check_target()
 {
-    std::cout << "missile hit target" << std::endl;
+    //std::cout << "missile hit target" << std::endl;
     this->~Missile();
     return true;
 }

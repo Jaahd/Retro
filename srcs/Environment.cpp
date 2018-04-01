@@ -1,3 +1,4 @@
+#include <unistd.h>
 #include "Environment.hpp"
 
 Environment::Environment(void)
@@ -6,11 +7,11 @@ Environment::Environment(void)
     cbreak();
     keypad(stdscr, TRUE);
     timeout(0);
-    // nodelay(stdscr, 1);
+     nodelay(stdscr, 1);
     noecho();
     curs_set(0);
     getmaxyx(stdscr, this->_h, this->_w);
-    start_color();
+    //start_color();
     this->_player.setY(this->_h - 2);
     this->_active = true;
     return;
@@ -20,7 +21,7 @@ Environment::~Environment(void)
 {
 
     endwin();
-    std::cout << this->_h << " height and " << this->_w << " width\n";
+    //std::cout << this->_h << " height and " << this->_w << " width\n";
     return;
 }
 
@@ -62,14 +63,13 @@ void Environment::handleKey(int key)
 }
 void Environment::printAll()
 {
+    this->_enemies.event(this->_w);
     clear();
+    box(stdscr, 0, 0);
+    // this->checkCollisions();
     this->_player.print('A');
     this->_player.getMissiles().printAll();
-    this->_enemies.event(this->_w);
-    this->checkCollisions(this->_player);
     this->_enemies.printAll();
-
-    box(stdscr, 0, 0);
     refresh();
     return;
 }
@@ -84,7 +84,7 @@ void Environment::print(int x, int y, int toDisplay) const
 
     return;
 }
-void Environment::removeObjects(PlayerShip &player)
+void Environment::removeObjects()
 {
     int nbMissiles = this->_player.getMissiles().getCount();
     for (int i = 0; i < nbMissiles; i++)
@@ -99,23 +99,37 @@ void Environment::removeObjects(PlayerShip &player)
 
 }
 
-void Environment::checkCollisions(PlayerShip &player)
+int Environment::checkCollisions(void)
 {
-    mvprintw(5, 2, "check coll");
-    MissilePack &missiles = player.getMissiles();
+    //mvprintw(5, 2, "check coll");
+    MissilePack &missiles = _player.getMissiles();
     int nbEnemies = this->_enemies.getCount();
-    mvprintw(6, 2, "ng Enemies {%d}", nbEnemies);
-    this->_enemies.checkCollisions(player);
-	// for (int i = 0; i < nbEnemies; i++)
-	// {
-	// 	this->_enemies.getOne(i)->checkHit(missiles, player);
-	// }
+    mvprintw(6, 2, "hp {%d}", _player.getPv());
+	for (int i = 0; i < nbEnemies; i++)
+	{
+        int hit = this->_enemies.getOne(i)->checkHit(missiles, _player);
+		if (hit)
+        {
+            this->_enemies.deleteOne(i);
+            if (hit == DEAD)
+                return DEAD;
+            return 1;
+        }
+	}
+    return 0;
 }
 PlayerShip &Environment::getPlayer(void)
 {
     return this->_player;
 }
-
+bool Environment::newGame()
+{
+    clear();
+    box(stdscr, 0, 0);
+    mvprintw(this->_w / 2, this->_h / 2, "GAME OVER");
+    sleep(5);
+    refresh();
+}
 Environment &Environment::operator=(Environment const &rhs)
 {
     //add equality

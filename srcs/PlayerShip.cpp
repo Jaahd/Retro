@@ -2,12 +2,12 @@
 #include "PlayerShip.hpp"
 #include "PlayerShip.hpp"
 
-PlayerShip::PlayerShip(void) : _name("ship"), _x(10), _pv(20), _lvl(1), _armor(0), _atk(1), _speed(1)
+PlayerShip::PlayerShip(void) : _name("ship"), _x(10), _pv(3), _lvl(1), _armor(0), _atk(1), _speed(1)
 {
     std::cout << "player ship created" << std::endl;
 }
 
-PlayerShip::PlayerShip(std::string const &name) : _name(name), _x(10), _pv(20), _lvl(1), _armor(0), _atk(1), _speed(1)
+PlayerShip::PlayerShip(std::string const &name) : _name(name), _x(10), _pv(3), _lvl(1), _armor(0), _atk(1), _speed(1)
 {
     std::cout << "player ship created" << std::endl;
 }
@@ -28,7 +28,13 @@ void PlayerShip::print(int toDisplay) const
     _display.print(_x, _y, COLOR_WHITE, toDisplay);
     return;
 }
-
+int PlayerShip::pvLost()
+{
+    this->_pv--;
+    if (this->_pv == 0)
+        return DEAD;
+    return this->_pv;
+}
 void PlayerShip::event(int key, int width)
 {
     switch (key)

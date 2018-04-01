@@ -34,7 +34,7 @@ class Missile
     int _width;
     int _speed;
     int _damages;
-    int _toDisplay = '.';
+    int _toDisplay;
     Display _display;
 };
 

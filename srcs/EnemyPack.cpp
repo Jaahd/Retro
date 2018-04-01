@@ -46,7 +46,7 @@ Enemy *EnemyPack::getOne(int n) const
 		return NULL;
 	return _current[n];
 }
-void EnemyPack::randomChump(int width)
+void EnemyPack::event(int width)
 {
     int x = rand() % (width - 1);
     int pop = rand() % 40;
@@ -56,21 +56,9 @@ void EnemyPack::randomChump(int width)
         this->push(enemy);
     }
 }
-void EnemyPack::checkCollisions(PlayerShip &player)
-{
-    mvprintw(4, 2, "check collision gal");
-    MissilePack missiles = player.getMissiles();
-    for (int i = 0; i < this->_count; i++)
-        this->_current[i]->checkHit(missiles, player);
-}
-void EnemyPack::event(int width)
-{
-    this->randomChump(width);
-
-}
 void EnemyPack::printAll(void)
 {
-    mvprintw(2, 2, "enemies %d", this->_count);
+    //mvprintw(2, 2, "enemies %d", this->_count);
     for (int i = 0; i < this->_count; i++)
         this->_current[i]->print();
 }

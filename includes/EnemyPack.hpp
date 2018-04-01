@@ -20,8 +20,8 @@ class EnemyPack
 	int getCount(void) const;
     void event(int width);
     void printAll(void);
-    void randomChump(int width);
-    void checkCollisions(PlayerShip &player);
+    // void randomChump(int width);
+    // void checkCollisions(PlayerShip &player);
 
   private:
 	Enemy **_current;

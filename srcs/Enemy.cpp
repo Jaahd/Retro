@@ -19,27 +19,49 @@ Enemy::~Enemy()
 {
 }
 
-bool Enemy::checkHit(MissilePack &missiles, PlayerShip &player)
+int Enemy::checkHit(MissilePack &missiles, PlayerShip &player)
 {
 
     int playerX = player.getX();
+    int playerY = player.getY();
     int playerWidth = player.getWidth();
-    mvprintw(2, 2, "check collision cdt1(%d) cdt2(%d)", this->_x + this->_width - playerX, playerX + playerWidth - this->_x);
-    if (this->_x + this->_width - playerX || playerX + playerWidth - this->_x)
-        return true;
+    // int count = missiles.getCount();
+    static int touch = 0;
+    int mx;
+    int mw;
 
+    // if (this->_x + this->_width - playerX || playerX + playerWidth - this->_x)
+    //     return true;
+    // mvprintw(4, 5, "current missile %d", count);
+    // if (touch)
+    //     mvprintw(5, 5, "%d", touch);
+    if (_y == playerY)
+    {
+        if ((this->_x >= playerX && this->_x <= playerX + playerWidth) || (this->_x + _width >= playerX && this->_x + _width <= playerX + playerWidth))
+        {
+            if (player.pvLost() == DEAD)
+                return DEAD;
+            return true;
+        }
+    }
     for (int i = 0; i < missiles.getCount(); i++)
     {
         Missile *currMissile = missiles.getOne(i);
-        if (this->_x + this->_width - currMissile->getX() || currMissile->getX() + currMissile->getWidth() - this->_x)
-            delete currMissile;
+        mx = currMissile->getX();
+        mw = currMissile->getWidth();
+        if (this->_y == currMissile->getY() && ((this->_x >= mx && this->_x <= mx + mw) || (this->_x + _width >= mx && this->_x + _width <= mx + mw)))
+        {
+            touch++;
+            missiles.deleteOne(i);
+            return true;
+        }
     }
 
     return false;
 }
 void Enemy::print()
 {
-    mvprintw(2, 2, "enemy x(%d) y(%d)", this->_x, this->_y);
+    // mvprintw(2, 2, "enemy x(%d) y(%d)", this->_x, this->_y);
     this->_y += this->_speed;
     this->_display.print(this->_x, this->_y, COLOR_WHITE, this->_toDisplay);
     return;
