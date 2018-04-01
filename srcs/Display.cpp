@@ -27,8 +27,8 @@ void Display::print(int x, int y, int color, std::string toDisplay) const
 	return;
 }
 
-// Display &Display::operator=(Display const &rhs)
-// {
-
-// 	return *this;
-// }
+Display &Display::operator=(Display const &rhs)
+{
+    (void)rhs;
+	return *this;
+}

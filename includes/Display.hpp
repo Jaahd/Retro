@@ -10,11 +10,10 @@ class Display
 	Display(void);
 	Display(Display const &src);
 	~Display(void);
+
 	void print(int x, int y, int color,std::string toDisplay) const;
-
-
-	//Display &operator=(Display const &rhs);
-    private:
+    
+	Display &operator=(Display const &rhs);
 };
 
 #endif
