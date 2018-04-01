@@ -63,15 +63,15 @@ void Environment::printAll(int elapsed_time)
 {
     clear();
     this->_player.print('A', elapsed_time);
+    this->_player.getMissiles().printAll();
+    this->_enemies.printAll();
+    // int nbMissiles = _player.getMissiles().getCount();
+    // for (int i = 0; i < nbMissiles; i++)
+    // {
+    //     Missile *curr_missile = this->_player.getMissiles().getOne(i);
+    //     curr_missile->print('.', elapsed_time);
 
-    int nbMissiles = _player.getMissiles().getCount();
-    for (int i = 0; i < nbMissiles; i++)
-    {
-        Missile *curr_missile = this->_player.getMissiles().getOne(i);
-        curr_missile->print('.', elapsed_time);
-        // if (curr_missile->getY() < 0)
-        //     this->_player.getMissiles().deleteOne(i);
-    }
+    // }
 
     refresh();
     return;

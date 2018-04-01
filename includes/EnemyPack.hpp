@@ -18,6 +18,7 @@ class EnemyPack
 	virtual Enemy *getOne(int) const;
 	virtual int deleteOne(int n);
 	virtual int getCount(void) const;
+    void printAll(void);
 
   private:
 	Enemy **_current;

@@ -20,8 +20,9 @@ int main(void)
     while (env.isActive())
     {
         tempo = (tempo + (CLOCKS_PER_SEC / 1000000)) % 1000;
-        mvprintw(2, 2, "tempo %d", tempo);
+        // mvprintw(2, 2, "tempo %d", tempo);
         env.handleKey(getch(), tempo);
+
         env.printAll(tempo);
         env.removeObjects();
     }

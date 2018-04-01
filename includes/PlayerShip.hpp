@@ -44,6 +44,7 @@ public:
   int getSpeed(void) const;
   void setSpeed(int lvl);
   MissilePack &getMissiles();
+  Display &getDisplay();
 
 
 private:

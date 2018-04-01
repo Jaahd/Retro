@@ -2,11 +2,11 @@
 #include "MissilePack.hpp"
 #include "PlayerShip.hpp"
 
-Enemy::Enemy(void) : _x(0), _y(0), _width(1)
+Enemy::Enemy(void) : _x(0), _y(10), _width(1), _speed(1), _toDisplay('O')
 {
 }
 
-Enemy::Enemy(int x, int y, int width) : _x(x), _y(y), _width(width)
+Enemy::Enemy(int x, int y, int width, int speed, int toDisplay) : _x(x), _y(y), _width(width), _speed(speed), _toDisplay(toDisplay)
 {
 }
 
@@ -33,6 +33,13 @@ bool Enemy::checkHit(MissilePack &missiles, PlayerShip &player)
     }
 
     return false;
+}
+void Enemy::print()
+{
+    mvprintw(2, 2, "enemy x(%d) y(%d)", this->_x, this->_y);
+    this->_y =+ this->_speed;
+    this->_display.print(this->_x, this->_y, COLOR_WHITE, this->_toDisplay);
+    return;
 }
 
 int Enemy::getX(void) const

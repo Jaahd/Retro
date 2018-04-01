@@ -12,6 +12,7 @@ class Display
 	void print(int x, int y, int color,int toDisplay) const;
 
 	//Display &operator=(Display const &rhs);
+    private:
 };
 
 #endif

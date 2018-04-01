@@ -13,7 +13,7 @@ class Missile
 
     bool check_target(); // TODO
     void move();
-    void print(int toDisplay, int elapsed_time);
+    void print();
 
     Missile &operator=(Missile const &rhs);
 
@@ -34,6 +34,7 @@ class Missile
     int _width;
     int _speed;
     int _damages;
+    int _toDisplay = '.';
     Display _display;
 };
 

@@ -23,12 +23,10 @@ Missile::~Missile()
     std::cout << "missile destroyed -- x:[" << this->_x << "] y[" << this->_y << std::endl;
 }
 
-void Missile::print(int toDisplay, int elapsed_time)
+void Missile::print()
 {
-    // this->_display.print(this->_x, this->_y, COLOR_WHITE, toDisplay);
-    if (elapsed_time % 100 == 0)
-        this->_y -= this->_speed;
-    this->_display.print(this->_x, this->_y, COLOR_WHITE, toDisplay);
+    this->_y -= this->_speed;
+    this->_display.print(this->_x, this->_y, COLOR_WHITE, this->_toDisplay);
     return;
 }
 

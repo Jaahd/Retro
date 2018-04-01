@@ -11,7 +11,6 @@ MissilePack::MissilePack(MissilePack const &src)
 
 MissilePack::~MissilePack()
 {
-    std::cout << "end missiles pack " << this->_count << std::endl;
     if (!_current)
         return;
     for (int i = 0; i < _count; i++)
@@ -28,21 +27,15 @@ Missile **MissilePack::getValue(void) const
 
 MissilePack &MissilePack::operator=(MissilePack const &rhs)
 {
-
     this->_current = rhs.getValue();
     this->_count = rhs.getCount();
     return *this;
 }
 
-void MissilePack::moveAll(void)
+void MissilePack::printAll(void)
 {
     for (int i = 0; i < this->_count; i++)
-    {
-        this->_current[i]->move();
-        mvprintw(5 + i, 1, "missile x(%d),y(%d)", this->_current[i]->getX(), this->_current[i]->getY());
-        // if (this->_current[i]->getY() <= 0)
-        //     this->_count = this->deleteOne(i);
-    }
+        this->_current[i]->print();
 }
 
 int MissilePack::getCount(void) const
@@ -59,7 +52,6 @@ Missile *MissilePack::getOne(int n) const
 
 int MissilePack::push(Missile *m)
 {
-    std::cout <<"add " << _count + 1<<std::endl;
     Missile **tmp;
     if (!m)
         return _count;
@@ -94,6 +86,5 @@ int MissilePack::deleteOne(int n)
         delete[] _current;
     _current = tmp;
     _count--;
-    std::cout <<"remove " << _count <<std::endl;
     return _count;
 }

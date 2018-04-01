@@ -44,6 +44,12 @@ Enemy *EnemyPack::getOne(int n) const
 		return NULL;
 	return _current[n];
 }
+void EnemyPack::printAll(void)
+{
+    mvprintw(2, 2, "enemies %d", this->_count);
+    for (int i = 0; i < this->_count; i++)
+        this->_current[i]->print();
+}
 
 int EnemyPack::push(Enemy *m)
 {

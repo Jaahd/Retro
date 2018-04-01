@@ -46,10 +46,7 @@ void PlayerShip::event(int key, int width)
     }
     case ' ':
     {
-        mvprintw(8, 2, "case space");
-
         this->_missiles.push(&(this->launchMissile()));
-        mvprintw(9, 2, "nb missiles %d", this->_missiles.getCount());
         break;
     }
     default:
@@ -59,7 +56,6 @@ void PlayerShip::event(int key, int width)
 
 bool PlayerShip::moveLeft()
 {
-    mvprintw(10, 1, "move lft");
     if (this->_x > 0)
         this->_x--;
     return true;
@@ -67,7 +63,6 @@ bool PlayerShip::moveLeft()
 
 bool PlayerShip::moveRight(int width)
 {
-    mvprintw(10, 1, "move right");
     if (this->_x < width)
         this->_x++;
     return true;
@@ -156,17 +151,23 @@ MissilePack & PlayerShip::getMissiles(void)
 {
     return this->_missiles;
 }
-
+Display & PlayerShip::getDisplay(void)
+{
+    return this->_display;
+}
 PlayerShip &PlayerShip::operator=(PlayerShip const &rhs)
 {
     this->_name = rhs.getName();
     this->_x = rhs.getX();
     this->_y = rhs.getY();
+    this->_width = rhs.getWidth();
     this->_pv = rhs.getPv();
     this->_lvl = rhs.getLvl();
     this->_armor = rhs.getArmor();
     this->_atk = rhs.getAtk();
     this->_speed = rhs.getSpeed();
+    // this->_missiles = rhs.getMissiles();
+    // this->_display = rhs.getDisplay();
 
     return *this;
 }

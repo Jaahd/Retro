@@ -30,6 +30,7 @@ class Environment
     bool _active;
     PlayerShip _player;
     Display _display;
+    EnemyPack _enemies;
 };
 
 #endif
